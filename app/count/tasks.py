@@ -54,28 +54,24 @@ def count(ex_first, ex_second, data_first, data_second, dict, first_key, second_
 
     def create_record():
         return {
-            'exchange_first': ex_first,
-            'exchange_second': ex_second,
-
-            'price_first': custom_round_func(price_first),
-            'price_second': custom_round_func(price_second),
-
-            'full_price_first': '{:10f}'.format(price_first),
-            'full_price_second': '{:10f}'.format(price_second),
-
-            # 'base': base_first,
-            # 'quote': quote_first,
-            
-            'bid_qty_first': bid_qty_first,
-            'ask_qty_first': ask_qty_first,
-            'bid_qty_second': bid_qty_second,
-            'ask_qty_second': ask_qty_second,
-
-            'give_first': base_first,
-            'get_first': quote_first,
-            'give_second': base_second,
-            'get_second': quote_second,
-
+            "first": {
+                "exchange": ex_first,
+                "price": custom_round_func(price_first),
+                "full_price": price_first,
+                "bid_qty": bid_qty_first,
+                "ask_qty": ask_qty_first,
+                'base': base_first,
+                'quote': quote_first,
+            },
+            "second": {
+                "exchange": ex_second,
+                "price": custom_round_func(price_second),
+                "full_price": price_second,
+                "bid_qty": bid_qty_second,
+                "ask_qty": ask_qty_second,
+                'base': base_second,
+                'quote': quote_second,
+            },
             'spread': spread,
             'hash': create_hash(),
         }
