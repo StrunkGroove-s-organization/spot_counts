@@ -39,7 +39,7 @@ class InterSerializer(serializers.Serializer):
 
     def validate_trade_type(self, value):
         if value not in self.valid_trade_type:
-            raise serializers.ValidationError(f'Invalid exchange: {value}')
+            raise serializers.ValidationError(f'Invalid trade type: {value}')
         return value
     
     def validate_exchanges_buy(self, value):
