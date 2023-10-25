@@ -8,3 +8,5 @@ flower==2.0.1
 beautifulsoup4==4.12.2 
 django-redis==5.4.0
 requests==2.31.0
+djangorestframework
+cryptography

@@ -21,6 +21,10 @@ EXTENSIONS_APP = [
     'best_change_zip',
     'best_change_parsing',
     'count_links_3',
+    'main',
+    'api',
+    
+    'rest_framework',
 ]
 
 INSTALLED_APPS = [
@@ -70,7 +74,11 @@ DATABASES = {
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
         'HOST': 'db',
         'PORT': os.getenv('POSTGRES_PORT'),
-    }
+    },
+    'test': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    },
 }
 
 CACHES = {

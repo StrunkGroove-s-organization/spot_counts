@@ -31,7 +31,7 @@ services:
     celery:
         build:
             context: .
-        command: celery -A main worker -l info
+        command: celery -A main worker --loglevel=ERROR
         volumes:
             - ./app:/app
         depends_on:
@@ -41,20 +41,20 @@ services:
     celery-beat:
         build:
             context: .
-        command: celery -A main beat -l info 
+        command: celery -A main beat --loglevel=ERROR
         volumes:
             - ./app:/app
         depends_on:
             - celery
 
-    # flower:
-    #     build:
-    #         context: .
-    #     volumes:
-    #         - ./app:/app
-    #     ports:
-    #         - "5555:5555"
-    #     command: sh -c "sleep 2 && celery -A main flower"
-    #     depends_on:
-    #         - celery
-    #         - celery-beat
+    flower:
+        build:
+            context: .
+        volumes:
+            - ./app:/app
+        ports:
+            - "5555:5555"
+        command: sh -c "sleep 2 && celery -A main flower"
+        depends_on:
+            - celery
+            - celery-beat
