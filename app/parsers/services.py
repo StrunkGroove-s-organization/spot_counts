@@ -152,6 +152,9 @@ class ParserTwoRequest(ParserBase):
         self.del_fake(data)
         self.del_fake(data_add)
         
+        data = sorted(data, key=lambda x: x[self.symbol])
+        data_add = sorted(data_add, key=lambda x: x[self.symbol])
+        
         data_dict = self.merge(data, data_add)
         self.save_db(data_dict)
         return f"{self.key}: {len(data_dict)}"
