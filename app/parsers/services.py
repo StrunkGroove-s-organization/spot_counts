@@ -223,6 +223,8 @@ class ParserSimple(ParserBase):
                 'quote': base,
                 'base': quote,
                 'price': 1 / params.pop('price'),
+                'ask_price': 1 / params.pop('ask_price'),
+                'bid_price': 1 / params.pop('bid_price'),
                 **params
             }
 
