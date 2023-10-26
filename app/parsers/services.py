@@ -145,7 +145,7 @@ class ParserBase:
             price = float(price)
 
             dict_append(dict, base, quote, price, bid_price, ask_price, bid_qty, ask_qty, ex)
-            # dict_append(dict, quote, base, 1/price, bid_price, ask_price, bid_qty, ask_qty, ex)
+            dict_append(dict, quote, base, 1/price, bid_price, ask_price, bid_qty, ask_qty, ex)
 
         return dict
 
