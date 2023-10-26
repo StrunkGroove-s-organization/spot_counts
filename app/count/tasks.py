@@ -87,9 +87,8 @@ def count(ex_first, ex_second, data_first, data_second, dict, first_key, second_
         for ad_second in data_second.values():
             base_second = ad_second['base']
             quote_second = ad_second['quote']
-
-            if base_first != base_second \
-            or quote_first != quote_second:
+            
+            if not (base_first == quote_second and quote_first == base_second): 
                 continue
 
             price_first = ad_first[first_key]
