@@ -77,7 +77,6 @@ def bybit():
         "symbol": "symbol", 
         "ex": key,
 
-        
         "add_url": "https://api.bybit.com/spot/v3/public/quote/ticker/bookTicker",
         "ask_qty": "askQty", 
         "bid_qty": "bidQty", 
