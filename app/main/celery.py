@@ -48,14 +48,14 @@ app.conf.beat_schedule = {
         'task': 'parsers.tasks.okx',
         'schedule': 10.0,
     },
-    # 'binance-task': {
-    #     'task': 'parsers.tasks.binance',
-    #     'schedule': 10.0,
-    # },
-    # 'bybit-task': {
-    #     'task': 'parsers.tasks.bybit',
-    #     'schedule': 10.0,
-    # },
+    'binance-task': {
+        'task': 'parsers.tasks.binance',
+        'schedule': 10.0,
+    },
+    'bybit-task': {
+        'task': 'parsers.tasks.bybit',
+        'schedule': 10.0,
+    },
     'okx-task': {
         'task': 'parsers.tasks.okx',
         'schedule': 10.0,

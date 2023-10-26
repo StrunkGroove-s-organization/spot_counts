@@ -1,10 +1,13 @@
 import requests
 
-from typing import Dict
+from typing import Dict, Union
 from django.core.cache import cache
 
 
 class ParserBase:
+    """
+    Base class for parsers
+    """
     def __init__(self, key: str, dict: Dict[str, str]):
         """
         Initializes the class
@@ -27,9 +30,6 @@ class ParserBase:
         self.ask_price = dict['ask_price']
         self.bid_price = dict['bid_price']
         self.path_list = dict.get('path')
-
-        # add_url = dict.get('add_url')
-        # self.add_url = add_url if add_url else self.url
 
     def request(self, url: str) -> dict:
         """
@@ -61,129 +61,103 @@ class ParserBase:
         """
         return self.append_action(ad[self.symbol])
     
-    def parse(self, value):
+    def parse(self, value: Union[str, float]):
         value = float(value) if value != '' else None
-        return value if value != 0 else None
+        value if round(value, 0) != 0 else None
+        return value
 
-
-    # def merge(self, dict: dict) -> list:
-    #     """
-    #     Merge three dict: 
-    #         - dict about symbol
-    #         - dict data  
-    #         - dict add_info
-    #     """
-    #     def dict_append(dict: dict, first: str, 
-    #                     second: str, price: float, 
-    #                     bid_price: float, ask_price: float, 
-    #                     bid_qty: float, ask_qty: float, 
-    #                     ex: str) -> dict:
-    #         """
-    #         Create single record
-    #         """
-    #         dict[f"{first}{second}"] = {
-    #             "base": first,
-    #             "quote": second,
-    #             "price": price,
-    #             "bid_price": bid_price,
-    #             "ask_price": ask_price,
-    #             "bid_qty": bid_qty,
-    #             "ask_qty": ask_qty,
-    #             "ex": ex,
-    #         }
-
-    #     data = dict["data"]
-    #     add_info = dict["add_info"]
-        
-    #     dict = {}
-
-    #     for i in range(len(data)):
-    #         ad = data[i]
-    #         ad_add_info = add_info[i]
-
-    #         token = self.get_token(ad)
-    #         info = self.accept[token]
-
-    #         bid_price = ad_add_info[self.bid_price]
-    #         ask_price = ad_add_info[self.ask_price]
-    #         bid_qty = ad_add_info[self.bid_qty]
-    #         ask_qty = ad_add_info[self.ask_qty]
-    #         ex = self.ex
-
-    #         base = info["base"]
-    #         quote = info["quote"]
-    #         price = ad[self.price]
-
-    #         if bid_price == '' or ask_price == '' or price == '': 
-    #             continue
-            
-    #         bid_qty = float(bid_qty)
-    #         ask_qty = float(ask_qty)
-    #         bid_price = float(bid_price)
-    #         ask_price = float(ask_price)
-    #         price = float(price)
-
-    #         dict_append(dict, base, quote, price, bid_price, ask_price, bid_qty, ask_qty, ex)
-    #         dict_append(dict, quote, base, 1/price, bid_price, ask_price, bid_qty, ask_qty, ex)
-
-    #     return dict
-
-    # def save_db(self, data: dict) -> None:
-    #     """
-    #     Save data in Redis
-    #     """
-    #     cache.set(self.key, data, self.time_cash)
-
-    # def get_cleaned_data(self) -> dict:
-    #     """
-    #     Get all info about crypto symbols and save in Redis
-    #     """
-    #     dict = self.get_data()
-    #     dict = self.unpack_data(dict)
-    #     self.del_fake(dict)
-    #     data = self.merge(dict)
-    #     self.save_db(data)
-    #     return f"{self.key}: {len(data)}"
-
-
-class ParserTwoRequest(ParserBase):
-    def get_data(self) -> dict:
+    def save_db(self, data: dict) -> None:
         """
-        Get data about crypto symbols
+        Save data in Redis
         """
-        dict = {
-            "data": self.get(self.url),
-            "add_info": self.get(self.add_url),
-        }
-        return dict
+        cache.set(self.key, data, self.time_cash)
 
-    def unpack_data(self, dict: dict) -> dict:
-        """
-        Unpack data and return flat list for data in response
-        """
-        
-        dict = {
-            "data": self.unpack(dict["data"], self.path_list),
-            "add_info": self.unpack(dict["add_info"], self.path_list),
-        }
-        return dict
-    
-
-class ParserSimple(ParserBase):
-    
     def del_fake(self, data: dict) -> None:
         """
         Delete tokens who has fake price
         """
         indices_to_remove = []
+
         for index, ad in enumerate(data):
             symbol = self.get_token(ad)
 
             if symbol not in self.accept:
                 indices_to_remove.append(index)
-                
+
         for i in reversed(indices_to_remove):
             data.pop(i)
+
+
+class ParserTwoRequest(ParserBase):
+    def __init__(self, key: str, dict: Dict[str, str]):
+        super().__init__(key, dict)
+        self.add_url = dict['add_url']
+
+    def merge(self, data: dict, data_add: dict) -> list:
+        """
+        Merge three dict: 
+            - dict data  
+            - dict data_add
+        """
+
+        new_data = {}
+
+        for ad, add_ad in zip(data, data_add):
+            token = self.get_token(ad)
+            info = self.accept[token]
+
+            base = info["base"]
+            quote = info["quote"]
+
+            params = {
+                "price": self.parse(ad[self.price]),
+                "bid_price": self.parse(add_ad[self.bid_price]),
+                "ask_price": self.parse(add_ad[self.ask_price]),
+                "bid_qty": self.parse(add_ad[self.bid_qty]),
+                "ask_qty": self.parse(add_ad[self.ask_qty]),
+                "ex": self.ex,
+            }
+
+            if None in params.values():
+                continue
+
+            new_data[f'{base}{quote}'] = {
+                'base': base,
+                'quote': quote,
+                **params,
+            }
+            new_data[f'{quote}{base}fake'] = {
+                'fake': True,
+                'quote': base,
+                'base': quote,
+                'price': 1 / params.pop('price'),
+                'ask_price': 1 / params.pop('ask_price'),
+                'bid_price': 1 / params.pop('bid_price'),
+                **params
+            }
+
+        return new_data
+
+    def get_cleaned_data(self) -> dict:
+        """
+        Get all info about crypto symbols and save in Redis
+        """
+        data = self.request(self.url)
+        data_add = self.request(self.add_url)
+        if data is None or data_add is None: return None
+
+        data = self.unpack(data, self.path_list)
+        data_add = self.unpack(data_add, self.path_list)
+
+        self.del_fake(data)
+        self.del_fake(data_add)
+        
+        data_dict = self.merge(data, data_add)
+        self.save_db(data_dict)
+        return f"{self.key}: {len(data_dict)}"
+
+
+class ParserSimple(ParserBase):
 
     def transformation(self, data: dict) -> list:
         """
@@ -230,18 +204,12 @@ class ParserSimple(ParserBase):
 
         return new_data
 
-    def save_db(self, data: dict) -> None:
-        """
-        Save data in Redis
-        """
-        cache.set(self.key, data, self.time_cash)
-
     def get_cleaned_data(self) -> dict:
         """
         Get all info about crypto symbols and save in Redis
         """
         data = self.request(self.url)
-        if data is None: return 'Failed'
+        if data is None: return None
         data = self.unpack(data, self.path_list)
         self.del_fake(data)
         data_dict = self.transformation(data)

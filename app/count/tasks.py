@@ -145,8 +145,8 @@ def main():
 
     data = {}
     exchanges = []
-    # get_data(data, exchanges, key_binance)
-    # get_data(data, exchanges, key_bybit)
+    get_data(data, exchanges, key_binance)
+    get_data(data, exchanges, key_bybit)
     get_data(data, exchanges, key_okx)
     get_data(data, exchanges, key_kucoin)
     get_data(data, exchanges, key_huobi)
