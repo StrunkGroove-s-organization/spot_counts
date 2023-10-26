@@ -53,7 +53,6 @@ class ParserBase:
             if path_list:
                 for path in path_list:
                     data = data[path]
-            data = sorted(data, key=lambda x: x[self.symbol], reverse=True)
             return data
 
         return {
