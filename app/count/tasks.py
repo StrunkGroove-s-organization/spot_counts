@@ -25,9 +25,9 @@ def unique_keys(all_ex):
 
 
 def calculate_spread(price_first, price_second):
-    if price_first == 0: return 0
+    # if price_first == 0: return 0
     fee = 0.15
-    spread = (((price_second - price_first) / price_first) - 1) * 100
+    spread = ((price_second * price_first) - 1) * 100
     spread = spread - fee
     return spread
 
@@ -83,11 +83,11 @@ def count(ex_first, ex_second, data_first, data_second, dict, first_key, second_
         
         base_first = ad_first['base']
         quote_first = ad_first['quote']
-
+        
         for ad_second in data_second.values():
             base_second = ad_second['base']
             quote_second = ad_second['quote']
-            
+
             if not (base_first == quote_second and quote_first == base_second): 
                 continue
 
@@ -100,7 +100,8 @@ def count(ex_first, ex_second, data_first, data_second, dict, first_key, second_
             ask_qty_second = ad_second['ask_qty']
 
             spread = calculate_spread(price_first, price_second)
-            if spread < 0.2: continue
+            # if spread < 0.2: continue
+            if spread < 0: continue
             dict[key].append(create_record())
             n += 1
     return n
@@ -142,8 +143,8 @@ def main():
 
     data = {}
     exchanges = []
-    get_data(data, exchanges, key_binance)
-    get_data(data, exchanges, key_bybit)
+    # get_data(data, exchanges, key_binance)
+    # get_data(data, exchanges, key_bybit)
     get_data(data, exchanges, key_okx)
     get_data(data, exchanges, key_kucoin)
     get_data(data, exchanges, key_huobi)

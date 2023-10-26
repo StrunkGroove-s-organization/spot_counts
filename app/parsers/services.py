@@ -11,6 +11,7 @@ class ParserBase:
         """
         # for requests
         self.url = dict['url']
+        self.session = requests.Session()
         
         # redis settings
         self.key = key
@@ -30,21 +31,21 @@ class ParserBase:
         # add_url = dict.get('add_url')
         # self.add_url = add_url if add_url else self.url
 
-    def get(self, url: str) -> dict:
+    def request(self, url: str) -> dict:
         """
         Get data about crypto symbols
         """
         try:
             return self.session.get(url).json()
         except requests.exceptions.RequestException as e:
-            return {}
+            return None
         
-    def unpack(data: dict, path: list):
+    def unpack(self, data: dict, path_list: list):
         """
         Return flat list
         """
-        if path:
-            for path in path:
+        if path_list:
+            for path in path_list:
                 data = data[path]
         return data
 
@@ -174,12 +175,12 @@ class ParserSimple(ParserBase):
         Delete tokens who has fake price
         """
         indices_to_remove = []
-        
         for index, ad in enumerate(data):
             symbol = self.get_token(ad)
+
             if symbol not in self.accept:
                 indices_to_remove.append(index)
-
+                
         for i in reversed(indices_to_remove):
             data.pop(i)
 
@@ -190,15 +191,16 @@ class ParserSimple(ParserBase):
             - dict data  
         """
         
-        dict = {}
+        new_data = {}
 
         for ad in data: # FIXME iterate with pop mb for save memory
             token = self.get_token(ad)
             info = self.accept[token]
 
+            base = info["base"]
+            quote = info["quote"]
+
             params = {
-                "base": info["base"],
-                "quote": info["quote"],
                 "price": self.parse(ad[self.price]),
                 "bid_price": self.parse(ad[self.bid_price]),
                 "ask_price": self.parse(ad[self.ask_price]),
@@ -209,20 +211,22 @@ class ParserSimple(ParserBase):
 
             if None in params.values():
                 continue
-            
-            dict[f'{params['base']}{params['quote']}'] = {
-                'reverse': False,
+
+            new_data[f'{base}{quote}'] = {
+                'fake': False,
+                'base': base,
+                'quote': quote,
                 **params,
             }
-            dict[f'{params['quote']}{params['base']}'] = {
-                'reverse': True,
-                'quote': params.pop('base'),
-                'base': params.pop('quote'),
+            new_data[f'{quote}{base}fake'] = {
+                'fake': True,
+                'quote': base,
+                'base': quote,
                 'price': 1 / params.pop('price'),
                 **params
             }
 
-        return dict
+        return new_data
 
     def save_db(self, data: dict) -> None:
         """
@@ -234,9 +238,10 @@ class ParserSimple(ParserBase):
         """
         Get all info about crypto symbols and save in Redis
         """
-        data = self.get()
-        data = self.unpack(dict)
+        data = self.request(self.url)
+        if data is None: return 'Failed'
+        data = self.unpack(data, self.path_list)
         self.del_fake(data)
-        data = self.transformation(dict)
-        self.save_db(data)
-        return f"{self.key}: {len(data)}"
+        data_dict = self.transformation(data)
+        self.save_db(data_dict)
+        return f"{self.key}: {len(data_dict)}"

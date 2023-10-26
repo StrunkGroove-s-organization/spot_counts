@@ -205,18 +205,18 @@ def bitget():
 
 ### Не работают ###
 
-@app.task
-def mexc(): # Иногда ответ от сервера достигает до 2 минут
-    """
-    Parser of exchange Mexc
-    """
-    mexc = {
-        "url": "https://api.mexc.com/api/v3/ticker/price",
-        "accept": mexc_accept,
-        "price": "price",
-        "symbol": "symbol", 
-    }
+# @app.task
+# def mexc(): # Иногда ответ от сервера достигает до 2 минут
+#     """
+#     Parser of exchange Mexc
+#     """
+#     mexc = {
+#         "url": "https://api.mexc.com/api/v3/ticker/price",
+#         "accept": mexc_accept,
+#         "price": "price",
+#         "symbol": "symbol", 
+#     }
         
-    key = 'mexc'
-    mexc = ParserBase(key, mexc)
-    return mexc.get_cleaned_data()
+#     key = 'mexc'
+#     mexc = ParserBase(key, mexc)
+#     return mexc.get_cleaned_data()
