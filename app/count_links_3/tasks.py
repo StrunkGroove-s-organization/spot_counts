@@ -152,29 +152,32 @@ def count_link_3_actions(dict, best_change_data, data, exchange):
                 )
 
                 record = {
-                    'exchange': exchange,
-                    'ad_price_first': custom_round_func(real_price_first),
-                    'full_price_first': '{:10f}'.format(real_price_first),
-                    'qty_first': ad_first['bid_price'] * real_price_first,
-                    'ad_give_first': ad_give_first,
-                    'ad_get_first': crypto_info_dict[best_get_number],
-
-                    'ad_price_second': custom_round_func(real_price_second),
-                    'full_price_second': '{:10f}'.format(real_price_second),
-                    'qty_second': ad_second['ask_qty'] * real_price_first,
-                    'ad_give_second': crypto_info_dict[best_give_number],
-                    'ad_get_second': ad_get_second,
-
-                    'best_price': custom_round_func(best_price),
-                    'best_full_price': '{:10f}'.format(best_price),
-                    'spread_with_fee': spread_with_fee,
-
-                    'exchange_info': exchange_info_dict[exchange_id],
-                    'available': best_row['available'],
-                    'negative_reviews': best_row['negative_reviews'],
-                    'positive_reviews': best_row['positive_reviews'],
-                    'lim_min': round(best_row['lim_min'] * real_price_first, 3),
-                    'hash': hashed,
+                    "first": {
+                        "base": ad_give_first,
+                        "price": custom_round_func(real_price_first),
+                        "price_full": '{:13f}'.format(real_price_first),
+                        "qty": ad_second['ask_qty'] * real_price_first,
+                    },
+                    "best": {
+                        "price": custom_round_func(best_price),
+                        "price_full": '{:13f}'.format(best_price),
+                        "base": crypto_info_dict[best_get_number],
+                        "quote": crypto_info_dict[best_give_number],
+                        "exchange_info": exchange_info_dict[exchange_id],
+                        "available": best_row['available'],
+                        "negative_reviews": best_row['negative_reviews'],
+                        "positive_reviews": best_row['positive_reviews'],
+                        "lim_min": round(best_row['lim_min'] * real_price_first, 3),
+                    },
+                    "second": {
+                        "base": ad_get_second,
+                        "price": custom_round_func(real_price_second),
+                        "price_full": '{:13f}'.format(real_price_second),
+                        "qty": ad_second['ask_qty'] * real_price_second,
+                    },
+                    "spread": spread_with_fee,
+                    "exchange": exchange,
+                    "hash": hashed,
                 }
                 dict[ad_give_first].append(record)
                 n += 1
