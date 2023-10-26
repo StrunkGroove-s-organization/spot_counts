@@ -187,7 +187,7 @@ def count_link_3_actions(dict, best_change_data, data, exchange):
 def sorted_dict(dict):
     sorted_data = sorted(
         dict,
-        key=lambda x: x['spread_with_fee'],
+        key=lambda x: x['spread'],
         reverse=True
     )
 
