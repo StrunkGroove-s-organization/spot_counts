@@ -82,7 +82,7 @@ def count(ex_first, ex_second, data_first, data_second, dict, first_key, second_
         
         base_first = ad_first['base']
         quote_first = ad_first['quote']
-        if ad_first['fake'] is True:
+        if ad_first.get('fake') is True:
             continue
         
         for ad_second in data_second.values():
@@ -101,8 +101,9 @@ def count(ex_first, ex_second, data_first, data_second, dict, first_key, second_
             ask_qty_second = ad_second['ask_qty']
 
             spread = calculate_spread(price_first, price_second)
-            # if spread < 0.2: continue
-            if spread < 0: continue
+            if spread < 0.2: continue
+            if ad_second.get('fake') is True:
+                base_second, quote_second = quote_second, base_second
             dict[key].append(create_record())
             n += 1
     return n

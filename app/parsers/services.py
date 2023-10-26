@@ -62,7 +62,8 @@ class ParserBase:
         return self.append_action(ad[self.symbol])
     
     def parse(self, value):
-        return float(value) if value != '' else None
+        value = float(value) if value != '' else None
+        return value if value != 0 else None
 
 
     # def merge(self, dict: dict) -> list:
@@ -213,7 +214,6 @@ class ParserSimple(ParserBase):
                 continue
 
             new_data[f'{base}{quote}'] = {
-                'fake': False,
                 'base': base,
                 'quote': quote,
                 **params,
