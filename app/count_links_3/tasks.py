@@ -170,7 +170,7 @@ def count_link_3_actions(dict, best_change_data, data, exchange):
                         "lim_min": round(best_row['lim_min'] * real_price_first, 3),
                     },
                     "second": {
-                        "base": ad_get_second,
+                        "quote": ad_get_second,
                         "price": custom_round_func(real_price_second),
                         "price_full": '{:13f}'.format(real_price_second),
                         "qty": ad_second['ask_qty'] * real_price_second,
@@ -195,10 +195,10 @@ def sorted_dict(dict):
     
     for obj in sorted_data:
         key = (
-            f"{obj['ad_give_first']}--"
-            f"{obj['ad_get_first']['abbr']}--"
-            f"{obj['ad_give_second']['abbr']}--"
-            f"{obj['ad_get_second']}"
+            f"{obj['first']['base']}--"
+            f"{obj['best']['base']['abbr']}--"
+            f"{obj['best']['quote']['abbr']}--"
+            f"{obj['second']['quote']}"
         )
 
         if key not in grouped_objects:
