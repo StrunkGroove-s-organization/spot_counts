@@ -25,7 +25,6 @@ def unique_keys(all_ex):
 
 
 def calculate_spread(price_first, price_second):
-    # if price_first == 0: return 0
     fee = 0.15
     spread = ((price_second * price_first) - 1) * 100
     spread = spread - fee
@@ -83,6 +82,8 @@ def count(ex_first, ex_second, data_first, data_second, dict, first_key, second_
         
         base_first = ad_first['base']
         quote_first = ad_first['quote']
+        if ad_first['fake'] is True:
+            continue
         
         for ad_second in data_second.values():
             base_second = ad_second['base']
