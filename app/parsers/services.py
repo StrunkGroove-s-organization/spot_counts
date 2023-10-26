@@ -53,8 +53,9 @@ class ParserBase:
             if path_list:
                 for path in path_list:
                     data = data[path]
+            data = sorted(data, key=lambda x: x[self.symbol], reverse=True)
             return data
-        
+
         return {
             "data": unpack(dict["data"], self.path_list),
             "add_info": unpack(dict["add_info"], self.path_list),
@@ -65,12 +66,6 @@ class ParserBase:
         Override class because sometimes symbols are present in characters
         """
         return token
-
-    def get_token(self, ad: dict) -> str:
-        """
-        Get token from single dict of symbol info
-        """
-        return self.append_action(ad[self.symbol])
     
     def del_fake(self, dict: dict) -> None:
         """

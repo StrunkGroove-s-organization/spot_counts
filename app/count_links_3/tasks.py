@@ -184,7 +184,7 @@ def count_link_3_actions(dict, best_change_data, data, exchange):
     return n
 
 
-def sorted_dict(dict):
+def grouped_dict(dict):
     sorted_data = sorted(
         dict,
         key=lambda x: x['spread'],
@@ -211,7 +211,7 @@ def sorted_dict(dict):
 def save_db(data, exchange):
     time_cash = 60
     for key, dict in data.items():
-        sort_data = sorted_dict(dict)
+        sort_data = grouped_dict(dict)
         key = f'{exchange}--{key}'
         cache.set(key, sort_data, time_cash)
 
