@@ -7,7 +7,7 @@ from parsers.info.kucoin import accept as kucoin_accept
 from parsers.info.gateio import accept as gateio_accept
 from parsers.info.mexc import accept as mexc_accept
 from parsers.info.bitget import accept as bitget_accept
-from .services import ParserBase
+from .services import ParserSimple
 
 
 @app.task
@@ -30,7 +30,7 @@ def okx():
         "bid_price": "bidPx", 
     }
 
-    class OkxParser(ParserBase):
+    class OkxParser(ParserSimple):
         def append_action(self, token: str) -> str:
             """
             Removing extra characters from a character
@@ -40,52 +40,52 @@ def okx():
     okx = OkxParser(key, okx)
     return okx.get_cleaned_data()
 
-@app.task
-def binance():
-    """
-    Parser spot price of exchange Binance
-    """
-    key = 'binance'
-    binance = {
-        "url": "https://api.binance.com/api/v3/ticker/price",
-        "accept": binance_accept,
-        "price": "price",
-        "symbol": "symbol", 
-        "ex": key,
+# @app.task
+# def binance():
+#     """
+#     Parser spot price of exchange Binance
+#     """
+#     key = 'binance'
+#     binance = {
+#         "url": "https://api.binance.com/api/v3/ticker/price",
+#         "accept": binance_accept,
+#         "price": "price",
+#         "symbol": "symbol", 
+#         "ex": key,
 
-        "add_url": "https://api.binance.com/api/v3/ticker/bookTicker",
-        "ask_qty": "askQty", 
-        "bid_qty": "bidQty", 
-        "ask_price": "askPrice", 
-        "bid_price": "bidPrice", 
-    }
+#         "add_url": "https://api.binance.com/api/v3/ticker/bookTicker",
+#         "ask_qty": "askQty", 
+#         "bid_qty": "bidQty", 
+#         "ask_price": "askPrice", 
+#         "bid_price": "bidPrice", 
+#     }
     
-    binance = ParserBase(key, binance)
-    return binance.get_cleaned_data()
+#     binance = ParserBase(key, binance)
+#     return binance.get_cleaned_data()
 
-@app.task
-def bybit():
-    """
-    Parser spot price of exchange Bybit
-    """
-    key = 'bybit'
-    bybit = {
-        "url": "https://api.bybit.com/spot/v3/public/quote/ticker/price",
-        "path": ['result', 'list'],
-        "accept": bybit_accept,
-        "price": "price",
-        "symbol": "symbol", 
-        "ex": key,
+# @app.task
+# def bybit():
+#     """
+#     Parser spot price of exchange Bybit
+#     """
+#     key = 'bybit'
+#     bybit = {
+#         "url": "https://api.bybit.com/spot/v3/public/quote/ticker/price",
+#         "path": ['result', 'list'],
+#         "accept": bybit_accept,
+#         "price": "price",
+#         "symbol": "symbol", 
+#         "ex": key,
 
-        "add_url": "https://api.bybit.com/spot/v3/public/quote/ticker/bookTicker",
-        "ask_qty": "askQty", 
-        "bid_qty": "bidQty", 
-        "ask_price": "askPrice", 
-        "bid_price": "bidPrice", 
-    }
+#         "add_url": "https://api.bybit.com/spot/v3/public/quote/ticker/bookTicker",
+#         "ask_qty": "askQty", 
+#         "bid_qty": "bidQty", 
+#         "ask_price": "askPrice", 
+#         "bid_price": "bidPrice", 
+#     }
 
-    bybit = ParserBase(key, bybit)
-    return bybit.get_cleaned_data()
+#     bybit = ParserBase(key, bybit)
+#     return bybit.get_cleaned_data()
 
 @app.task
 def huobi():
@@ -107,7 +107,7 @@ def huobi():
         "bid_price": "bid", 
     }
 
-    class HuobiParser(ParserBase):
+    class HuobiParser(ParserSimple):
         def append_action(self, token: str) -> str:
             """
             Removing extra characters from a character
@@ -137,7 +137,7 @@ def kucoin():
         "bid_price": "buy", 
     }
 
-    class KucoinParser(ParserBase):
+    class KucoinParser(ParserSimple):
         def append_action(self, token: str) -> str:
             """
             Removing extra characters from a character
@@ -166,7 +166,7 @@ def gateio():
         "bid_price": "highest_bid", 
     }
 
-    class GateioParser(ParserBase):
+    class GateioParser(ParserSimple):
         def append_action(self, token: str) -> str:
             """
             Removing extra characters from a character
@@ -196,7 +196,7 @@ def bitget():
         "bid_price": "buyOne", 
     }
 
-    class BitGetParser(ParserBase):
+    class BitGetParser(ParserSimple):
         pass
         
     bitget = BitGetParser(key, bitget)
