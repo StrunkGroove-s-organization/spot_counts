@@ -89,7 +89,13 @@ class ParserBase:
 
 
 class ParserTwoRequest(ParserBase):
+    """
+    A class for parsers where price and data are separated in the order book
+    """
     def __init__(self, key: str, dict: Dict[str, str]):
+        """
+        Initializes the class
+        """
         super().__init__(key, dict)
         self.add_url = dict['add_url']
 
@@ -154,14 +160,16 @@ class ParserTwoRequest(ParserBase):
         
         data = sorted(data, key=lambda x: x[self.symbol])
         data_add = sorted(data_add, key=lambda x: x[self.symbol])
-        
+
         data_dict = self.merge(data, data_add)
         self.save_db(data_dict)
         return f"{self.key}: {len(data_dict)}"
 
 
 class ParserSimple(ParserBase):
-
+    """
+    A class where price and data about order book in one request
+    """
     def transformation(self, data: dict) -> list:
         """
         Merge three dict: 

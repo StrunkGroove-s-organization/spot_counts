@@ -28,7 +28,7 @@ def calculate_spread(price_first, price_second):
     fee = 0.15
     spread = ((price_second * price_first) - 1) * 100
     spread = spread - fee
-    return spread
+    return round(spread, 2)
 
 
 def custom_round_func(price):
@@ -125,7 +125,7 @@ def save_db(data, type_trade):
         cache.set(key, dict, time_cash)
 
 
-@app.task
+# @app.task
 def main():
     def count_links(type, key_first, key_second):
         dict = unique_keys(exchanges)
@@ -166,3 +166,9 @@ def main():
     n += count_links('BUY-BUY', ask, ask)
     n += count_links('BUY-SELL', ask, bid)
     return n
+
+
+from .services import Count 
+@app.task
+def main():
+    return Count().main()
