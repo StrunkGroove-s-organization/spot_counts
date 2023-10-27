@@ -43,9 +43,9 @@ class Count:
         
         return dict
 
-    def save_db(self, all_data: dict):
-        for key, data in all_data.items():
-            cache.set(key, data, self.time_cash)
+    # def save_db(self, all_data: dict):
+    #     for key, data in all_data.items():
+    #         cache.set(key, data, self.time_cash)
 
     def calculate_spread(self, price_first, price_second):
         spread = ((price_second * price_first) - 1) * 100
@@ -93,9 +93,10 @@ class Count:
     def create_key(self, type, ex_first, ex_second):
         return f'{type}--{ex_first}--{ex_second}'
 
-    def count(self, all_data, first_info, second_info, info):
+    def count(self, first_info, second_info, info):
         n = 0
-
+        
+        all_data = []
         response = self.record()
 
         ex_first = first_info['ex']
@@ -115,6 +116,7 @@ class Count:
             quote_first = ad_first['quote']
             price_first = ad_first[first_price_key]
 
+            response['first']['exchange'] = ex_second
             response['first']['base'] = base_first
             response['first']['quote'] = quote_first
             response['first']['price'] = self.custom_round(price_first)
@@ -139,6 +141,7 @@ class Count:
                     base_second, quote_second = quote_second, base_second
                     price_second = 1 / price_second
 
+                response['second']['exchange'] = ex_first
                 response['second']['base'] = base_second
                 response['second']['quote'] = quote_second
                 response['second']['price'] = self.custom_round(price_second)
@@ -149,14 +152,15 @@ class Count:
                 response['spread'] = spread
                 response['hash'] = self.create_hash(base_first, base_second, ex_first, ex_second)
 
-                key = self.create_key(type_trade, ex_first, ex_second)
-                all_data[key] = response
+                all_data.append(response)
                 n += 1
+
+        key = self.create_key(type_trade, ex_first, ex_second)
+        cache.set(key, all_data, self.time_cash)
         return n
 
     def count_links(self, info: dict, data: dict) -> int:
         n = 0
-        all_data = {}
 
         for ex_first, data_first in data.items():
             for ex_second, data_second in data.items():
@@ -166,9 +170,7 @@ class Count:
                 first_info = {"ex": ex_first, "data": data_first}
                 second_info = {"ex": ex_second, "data": data_second}
 
-                n += self.count(all_data, first_info, second_info, info)
-
-        self.save_db(all_data)
+                n += self.count(first_info, second_info, info)
         return n
     
     def main(self):
