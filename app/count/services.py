@@ -116,7 +116,7 @@ class Count:
             quote_first = ad_first['quote']
             price_first = ad_first[first_price_key]
 
-            response['first']['exchange'] = ex_second
+            response['first']['exchange'] = ex_first
             response['first']['base'] = base_first
             response['first']['quote'] = quote_first
             response['first']['price'] = self.custom_round(price_first)
@@ -141,13 +141,13 @@ class Count:
                     base_second, quote_second = quote_second, base_second
                     price_second = 1 / price_second
 
-                response['second']['exchange'] = ex_first
+                response['second']['exchange'] = ex_second
                 response['second']['base'] = base_second
                 response['second']['quote'] = quote_second
                 response['second']['price'] = self.custom_round(price_second)
                 response['second']['full_price'] = price_second
-                response['second']['bid_qty'] = ad_first['bid_qty']
-                response['second']['ask_qty'] = ad_first['ask_qty']
+                response['second']['bid_qty'] = ad_second['bid_qty']
+                response['second']['ask_qty'] = ad_second['ask_qty']
 
                 response['spread'] = spread
                 response['hash'] = self.create_hash(base_first, base_second, ex_first, ex_second)

@@ -125,7 +125,7 @@ def save_db(data, type_trade):
         cache.set(key, dict, time_cash)
 
 
-# @app.task
+@app.task
 def main():
     def count_links(type, key_first, key_second):
         dict = unique_keys(exchanges)
@@ -168,7 +168,7 @@ def main():
     return n
 
 
-from .services import Count 
-@app.task
-def main():
-    return Count().main()
+# from .services import Count 
+# @app.task
+# def main():
+#     return Count().main()
