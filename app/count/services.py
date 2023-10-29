@@ -291,7 +291,30 @@ class CountInThree(Count):
             "exchange": str,
             "hash": str,
         }
-    
+
+    def grouped(self, dict):
+        sorted_data = sorted(
+            dict,
+            key=lambda x: x['spread'],
+            reverse=True
+        )
+
+        grouped_objects = {}
+        
+        for obj in sorted_data:
+            key = (
+                f"{obj['first']['base']}--"
+                f"{obj['best']['base']['abbr']}--"
+                f"{obj['best']['quote']['abbr']}--"
+                f"{obj['second']['quote']}"
+            )
+
+            if key not in grouped_objects:
+                grouped_objects[key] = []
+            grouped_objects[key].append(obj)
+
+        return grouped_objects
+
     def count(self, best_data: dict, data: dict) -> dict:
         crypto_info = self.get_crypto_info()
         exchange_info = self.get_exchange_info()
@@ -363,8 +386,9 @@ class CountInThree(Count):
 
                     n += 1
                     list_data[base_buy].append(record)
-        
-        for base_buy, data in list_data.items():
+
+        for base_buy, list_data in list_data.items():
+            data = self.grouped(list_data)
             key = f'{self.ex}--{base_buy}'
             cache.set(key, data, self.time_cash)
         return n
