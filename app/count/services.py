@@ -325,35 +325,42 @@ class CountInThree(Count):
                         self.ex, base_buy, best_base_num, best_quote_num, best_id
                     )
                     
-                    record['first']['base'] = base_buy
-                    record['first']['price'] = self.custom_round(price_buy)
-                    record['first']['price_full'] = self.round_for_real(price_buy)
-                    record['first']['qty'] = ad_buy['ask_qty'] * price_buy
+                    record = {
+                        "first": {
+                            "base": base_buy,
+                            "price": self.custom_round(price_buy),
+                            "price_full": self.round_for_real(price_buy),
+                            "qty": ad_buy['ask_qty'] * price_buy,
+                        },
+                        "best": {
+                            "price": self.custom_round(best_price),
+                            "price_full": self.round_for_real(best_price),
+                            "base": crypto_info[best_base_num],
+                            "quote": crypto_info[best_quote_num],
+                            "exchange_info": exchange_info[exchange_id],
+                            "available": best['available']
+,
+                            "negative_reviews": best['negative_reviews'],
+                            "positive_reviews": best['positive_reviews'],
+                            "lim_min": round(best['lim_min'] * best_price, 3),
+                        },
+                        "second": {
+                            "quote": quote_sell,
+                            "price": self.custom_round(price_sell),
+                            "price_full": self.round_for_real(price_sell),
+                            "qty": ad_sell['ask_qty'] * price_sell,
+                        },
+                        "spread": spread,
+                        "exchange": self.ex,
+                        "hash": hashed,
+                    }
 
-                    record['best']['price'] = self.custom_round(best_price)
-                    record['best']['price_full'] = self.round_for_real(best_price)
-                    record['best']['base'] = crypto_info[best_base_num]
-                    record['best']['quote'] = crypto_info[best_quote_num]
-                    record['best']['exchange_info'] = exchange_info[exchange_id]
-                    record['best']['available'] = best['available']
-                    record['best']['negative_reviews'] = best['negative_reviews']
-                    record['best']['positive_reviews'] = best['positive_reviews']
-                    record['best']['lim_min'] = round(best['lim_min'] * best_price, 3)
-
-                    record['second']['base'] = quote_sell
-                    record['second']['price'] = self.custom_round(price_sell)
-                    record['second']['price_full'] = self.round_for_real(price_sell)
-                    record['second']['qty'] = ad_sell['ask_qty'] * price_sell
-
-                    record['spread'] = spread
-                    record['exchange'] = self.ex
-                    record['hash'] = hashed
-                    
                     n += 1
                     list_data[base_buy].append(record)
-
-        key = f'{self.ex}--{base_buy}'
-        cache.set(key, list_data, self.time_cash)
+        
+        for base_buy, data in list_data.items():
+            key = f'{self.ex}--{base_buy}'
+            cache.set(key, data, self.time_cash)
         return n
 
     def main(self):
