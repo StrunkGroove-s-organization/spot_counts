@@ -32,7 +32,7 @@ class Count:
         return price
 
     def round_for_real(self, price: float) -> str:
-        return '{:20f}'.format(price)
+        return '{:.20f}'.format(price)
 
     def hashed(self, key) -> str:
         hash_object = hashlib.sha256()
