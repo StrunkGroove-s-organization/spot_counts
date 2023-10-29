@@ -32,7 +32,7 @@ class Count:
         return price
 
     def round_for_real(self, price: float) -> str:
-        return '{:.20f}'.format(price)
+        return '{:.13f}'.format(price)
 
     def hashed(self, key) -> str:
         hash_object = hashlib.sha256()
@@ -150,7 +150,7 @@ class CountInTwo(Count):
                     first: {
                         "exchange": ex_first,
                         "price": self.custom_round(price_first),
-                        "full_price": price_first,
+                        "full_price": self.round_for_real(price_first),
                         "bid_qty": ad_first['bid_qty'],
                         "ask_qty": ad_first['ask_qty'],
                         'base': base_first,
@@ -159,7 +159,7 @@ class CountInTwo(Count):
                     second: {
                         "exchange": ex_second,
                         "price": self.custom_round(price_second),
-                        "full_price": price_second,
+                        "full_price": self.round_for_real(price_second),
                         "bid_qty": ad_second['bid_qty'],
                         "ask_qty": ad_second['ask_qty'],
                         'base': base_second,
