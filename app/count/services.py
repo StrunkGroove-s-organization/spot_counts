@@ -140,26 +140,29 @@ class CountInTwo(Count):
                     base_second, quote_second = quote_second, base_second
                     price_second = 1 / price_second
 
-                print(f'{key_buy}--{key_sell}--{base_first}-{quote_first}-{base_second}-{quote_second}')
-
-                record['first']['exchange'] = ex_first
-                record['first']['base'] = base_first
-                record['first']['quote'] = quote_first
-                record['first']['price'] = self.custom_round(price_first)
-                record['first']['full_price'] = self.round_for_real(price_first)
-                record['first']['bid_qty'] = ad_first['bid_qty']
-                record['first']['ask_qty'] = ad_first['ask_qty']
-                record['second']['exchange'] = ex_second
-                record['second']['base'] = base_second
-                record['second']['quote'] = quote_second
-                record['second']['price'] = self.custom_round(price_second)
-                record['second']['full_price'] = price_second
-                record['second']['bid_qty'] = ad_second['bid_qty']
-                record['second']['ask_qty'] = ad_second['ask_qty']
-
-                record['spread'] = spread
-                record['hash'] = self.create_hash(base_first, base_second, ex_first, ex_second)
-
+                record = {
+                    "first": {
+                        "exchange": ex_first,
+                        "price": self.custom_round(price_first),
+                        "full_price": self.round_for_real(price_first),
+                        "bid_qty": ad_first['bid_qty'],
+                        "ask_qty": ad_first['ask_qty'],
+                        'base': base_first,
+                        'quote': quote_first,
+                    },
+                    "second": {
+                        "exchange": ex_second,
+                        "price": self.custom_round(price_second),
+                        "full_price": self.round_for_real(price_second),
+                        "bid_qty": ad_second['bid_qty'],
+                        "ask_qty": ad_second['ask_qty'],
+                        'base': base_second,
+                        'quote': quote_second,
+                    },
+                    'spread': spread,
+                    'hash': self.create_hash(base_first, base_second, ex_first, ex_second),
+                }
+                
                 all_data.append(record)
                 n += 1
 
