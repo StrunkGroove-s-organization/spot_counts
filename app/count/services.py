@@ -121,6 +121,14 @@ class CountInTwo(Count):
             base_first = ad_first['base']
             quote_first = ad_first['quote']
             price_first = ad_first[first_price_key]
+
+            record['first']['exchange'] = ex_first
+            record['first']['base'] = base_first
+            record['first']['quote'] = quote_first
+            record['first']['price'] = self.custom_round(price_first)
+            record['first']['full_price'] = self.round_for_real(price_first)
+            record['first']['bid_qty'] = ad_first['bid_qty']
+            record['first']['ask_qty'] = ad_first['ask_qty']
             
             for ad_second in second_data.values():
                 base_second = ad_second['base']
@@ -138,31 +146,14 @@ class CountInTwo(Count):
                 if ad_second.get('fake') is True:
                     base_second, quote_second = quote_second, base_second
                     price_second = 1 / price_second
-                
-                if price_first > price_second:
-                    first  = 'first'
-                    second  = 'second'
-                else:
-                    second  = 'first'
-                    first  = 'second'
 
-                first_token =  record[first]
-                first_token['exchange'] = ex_first
-                first_token['base'] = base_first
-                first_token['quote'] = quote_first
-                first_token['price'] = self.custom_round(price_first)
-                first_token['full_price'] = self.round_for_real(price_first)
-                first_token['bid_qty'] = ad_first['bid_qty']
-                first_token['ask_qty'] = ad_first['ask_qty']
-
-                second_token =  record[second]
-                second_token['exchange'] = ex_second
-                second_token['base'] = base_second
-                second_token['quote'] = quote_second
-                second_token['price'] = self.custom_round(price_second)
-                second_token['full_price'] = price_second
-                second_token['bid_qty'] = ad_second['bid_qty']
-                second_token['ask_qty'] = ad_second['ask_qty']
+                record['second']['exchange'] = ex_second
+                record['second']['base'] = base_second
+                record['second']['quote'] = quote_second
+                record['second']['price'] = self.custom_round(price_second)
+                record['second']['full_price'] = price_second
+                record['second']['bid_qty'] = ad_second['bid_qty']
+                record['second']['ask_qty'] = ad_second['ask_qty']
 
                 record['spread'] = spread
                 record['hash'] = self.create_hash(base_first, base_second, ex_first, ex_second)
