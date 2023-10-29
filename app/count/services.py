@@ -15,12 +15,15 @@ key_bitget = 'bitget'
 key_gateio = 'gateio'
 key_best_rates = 'rates'
 
+
 class Count:
     def __init__(self):
         self.fee = 0.15
 
         self.round_num = 4
         self.if_small_num = '0.000...'
+        
+        self.time_cash = 60
 
     def custom_round(self, price: float) -> float:
         price = round(price, self.round_num)
@@ -42,7 +45,6 @@ class CountInTwo(Count):
     def __init__(self):
         super().__init__()
 
-        self.time_cash = 60
         self._bid = 'bid_price'
         self._ask = 'ask_price'
         self.first = {'type': 'SELL-BUY', 'buy': self._bid, 'sell': self._ask}
@@ -53,13 +55,13 @@ class CountInTwo(Count):
 
     def get_data(self) -> dict:
         dict = {
-            'key_okx': cache.get(key_okx),
-            'key_huobi': cache.get(key_huobi),
-            'key_bybit': cache.get(key_bybit),
-            'key_kucoin': cache.get(key_kucoin),
-            'key_gateio': cache.get(key_gateio),
-            'key_bitget': cache.get(key_bitget),
-            'key_binance': cache.get(key_binance),
+            'okx': cache.get(key_okx),
+            'huobi': cache.get(key_huobi),
+            'bybit': cache.get(key_bybit),
+            'kucoin': cache.get(key_kucoin),
+            'gateio': cache.get(key_gateio),
+            'bitget': cache.get(key_bitget),
+            'binance': cache.get(key_binance),
         }
         return dict
 
@@ -96,8 +98,8 @@ class CountInTwo(Count):
             'hash': str,
         }
     
-    def create_key(self, type, ex_first, ex_second) -> str:
-        return f'{type}--{ex_first}--{ex_second}'
+    def create_key(self, trade_type, ex_first, ex_second) -> str:
+        return f'{trade_type}--{ex_first}--{ex_second}'
 
     def count(self, first_info, second_info, info):
         n = 0
@@ -344,9 +346,11 @@ class CountInThree(Count):
                     record['exchange'] = self.ex
                     record['hash'] = hashed
                     
-                    # f'{self.ex}--{base_buy}'
                     n += 1
                     list_data[base_buy].append(record)
+
+        key = f'{self.ex}--{base_buy}'
+        cache.set(key, list_data, self.time_cash)
         return n
 
     def main(self):
@@ -357,6 +361,5 @@ class CountInThree(Count):
         if not ex_data: return None
 
         n = self.count(best_data, ex_data)
-        # self.save_db(links)
 
         return f'{self.key}: {n}'

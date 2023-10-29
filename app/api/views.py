@@ -59,9 +59,6 @@ class Inter(BaseAPIView):
         def filter_exchanges(exs):
             return [ex for ex in self.all_ex if ex not in exs] if exs else self.all_ex
 
-        def create_key(trade_type, ex_buy, ex_sell):
-            return f'{trade_type}--{ex_buy}--{ex_sell}'
-
         def get_data(fil_ex_buy, fil_ex_sell, trade_type):
             def key(trade_type, ex_buy, ex_sell):
                 return f'{trade_type}--{ex_buy}--{ex_sell}'
