@@ -105,7 +105,6 @@ class CountInTwo(Count):
         n = 0
         
         all_data = []
-        record = self.record()
 
         ex_first = first_info['ex']
         ex_second = second_info['ex']
@@ -140,8 +139,15 @@ class CountInTwo(Count):
                     base_second, quote_second = quote_second, base_second
                     price_second = 1 / price_second
 
+                if price_first >= price_second:
+                    first = 'first'
+                    second = 'second'
+                else:
+                    second = 'first'
+                    first = 'second'
+
                 record = {
-                    "first": {
+                    first: {
                         "exchange": ex_first,
                         "price": self.custom_round(price_first),
                         "full_price": self.round_for_real(price_first),
@@ -150,7 +156,7 @@ class CountInTwo(Count):
                         'base': base_first,
                         'quote': quote_first,
                     },
-                    "second": {
+                    second: {
                         "exchange": ex_second,
                         "price": self.custom_round(price_second),
                         "full_price": self.round_for_real(price_second),
