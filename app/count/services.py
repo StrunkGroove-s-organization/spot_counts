@@ -116,23 +116,15 @@ class CountInTwo(Count):
         first_data = first_info.pop('data')
         second_data = second_info.pop('data')
 
-        for ad_first in first_data.values():
+        for key_buy, ad_first in first_data.items():
             if ad_first.get('fake') is True:
                 continue
             
             base_first = ad_first['base']
             quote_first = ad_first['quote']
             price_first = ad_first[first_price_key]
-
-            record['first']['exchange'] = ex_first
-            record['first']['base'] = base_first
-            record['first']['quote'] = quote_first
-            record['first']['price'] = self.custom_round(price_first)
-            record['first']['full_price'] = self.round_for_real(price_first)
-            record['first']['bid_qty'] = ad_first['bid_qty']
-            record['first']['ask_qty'] = ad_first['ask_qty']
             
-            for ad_second in second_data.values():
+            for key_sell, ad_second in second_data.items():
                 base_second = ad_second['base']
                 quote_second = ad_second['quote']
 
@@ -141,7 +133,6 @@ class CountInTwo(Count):
 
                 price_second = ad_second[second_price_key]
 
-
                 spread = self.calculate_spread(price_first, price_second)
                 if spread < 0.2: continue
                 
@@ -149,6 +140,15 @@ class CountInTwo(Count):
                     base_second, quote_second = quote_second, base_second
                     price_second = 1 / price_second
 
+                print(f'{key_buy}--{key_sell}--{base_first}-{quote_first}-{base_second}-{quote_second}')
+
+                record['first']['exchange'] = ex_first
+                record['first']['base'] = base_first
+                record['first']['quote'] = quote_first
+                record['first']['price'] = self.custom_round(price_first)
+                record['first']['full_price'] = self.round_for_real(price_first)
+                record['first']['bid_qty'] = ad_first['bid_qty']
+                record['first']['ask_qty'] = ad_first['ask_qty']
                 record['second']['exchange'] = ex_second
                 record['second']['base'] = base_second
                 record['second']['quote'] = quote_second
