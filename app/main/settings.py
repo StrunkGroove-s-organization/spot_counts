@@ -20,7 +20,6 @@ EXTENSIONS_APP = [
     'count',
     'best_change_zip',
     'best_change_parsing',
-    'count_links_3',
     'main',
     'api',
     

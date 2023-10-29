@@ -1,598 +1,354 @@
 accept = {
-    "BTCUSDT": {
-        "base": "BTC",
-        "quote": "USDT"
-    },
-    "ETHUSDT": {
-        "base": "ETH",
-        "quote": "USDT"
-    },
-    "TOMIUSDT": {
-        "base": "TOMI",
-        "quote": "USDT"
-    },
-    "SOLUSDT": {
-        "base": "SOL",
-        "quote": "USDT"
-    },
-    "SHIBUSDT": {
-        "base": "SHIB",
-        "quote": "USDT"
-    },
-    "XRPUSDT": {
-        "base": "XRP",
-        "quote": "USDT"
-    },
-    "USDCUSDT": {
-        "base": "USDC",
-        "quote": "USDT"
-    },
-    "TSUGTUSDT": {
-        "base": "TSUGT",
-        "quote": "USDT"
-    },
-    "VRAUSDT": {
-        "base": "VRA",
-        "quote": "USDT"
-    },
-    "KASUSDT": {
-        "base": "KAS",
-        "quote": "USDT"
-    },
-    "PEPE2USDT": {
-        "base": "PEPE2",
-        "quote": "USDT"
-    },
-    "BCHUSDT": {
-        "base": "BCH",
-        "quote": "USDT"
-    },
-    "TONUSDT": {
-        "base": "TON",
-        "quote": "USDT"
-    },
-    "ORBSUSDT": {
-        "base": "ORBS",
-        "quote": "USDT"
-    },
-    "BONDUSDT": {
-        "base": "BOND",
-        "quote": "USDT"
-    },
-    "LINKUSDT": {
-        "base": "LINK",
-        "quote": "USDT"
-    },
-    "ISLMUSDT": {
-        "base": "ISLM",
-        "quote": "USDT"
-    },
-    "SUIUSDT": {
-        "base": "SUI",
-        "quote": "USDT"
-    },
-    "WAXPUSDT": {
-        "base": "WAXP",
-        "quote": "USDT"
-    },
-    "LTCUSDT": {
-        "base": "LTC",
-        "quote": "USDT"
-    },
-    "BNBUSDT": {
-        "base": "BNB",
-        "quote": "USDT"
-    },
-    "RNDRUSDT": {
-        "base": "RNDR",
-        "quote": "USDT"
-    },
-    "NAKAUSDT": {
-        "base": "NAKA",
-        "quote": "USDT"
-    },
     "PEPEUSDT": {
         "base": "PEPE",
-        "quote": "USDT"
-    },
-    "HBARUSDT": {
-        "base": "HBAR",
-        "quote": "USDT"
-    },
-    "BLURUSDT": {
-        "base": "BLUR",
-        "quote": "USDT"
-    },
-    "ICPUSDT": {
-        "base": "ICP",
-        "quote": "USDT"
-    },
-    "ADAUSDT": {
-        "base": "ADA",
-        "quote": "USDT"
-    },
-    "STRAXUSDT": {
-        "base": "STRAX",
-        "quote": "USDT"
-    },
-    "TRXUSDT": {
-        "base": "TRX",
-        "quote": "USDT"
-    },
-    "BIGTIMEUSDT": {
-        "base": "BIGTIME",
-        "quote": "USDT"
-    },
-    "AVAXUSDT": {
-        "base": "AVAX",
         "quote": "USDT"
     },
     "ARBUSDT": {
         "base": "ARB",
         "quote": "USDT"
     },
-    "NRFBUSDT": {
-        "base": "NRFB",
-        "quote": "USDT"
-    },
-    "DOGEUSDT": {
-        "base": "DOGE",
-        "quote": "USDT"
-    },
-    "FLOKIUSDT": {
-        "base": "FLOKI",
-        "quote": "USDT"
-    },
-    "XPRUSDT": {
-        "base": "XPR",
-        "quote": "USDT"
-    },
-    "WLDUSDT": {
-        "base": "WLD",
-        "quote": "USDT"
-    },
-    "FTMUSDT": {
-        "base": "FTM",
-        "quote": "USDT"
-    },
-    "INJUSDT": {
-        "base": "INJ",
-        "quote": "USDT"
-    },
-    "STXUSDT": {
-        "base": "STX",
-        "quote": "USDT"
-    },
-    "RUNEUSDT": {
-        "base": "RUNE",
-        "quote": "USDT"
-    },
-    "XLMUSDT": {
-        "base": "XLM",
-        "quote": "USDT"
-    },
-    "MATICUSDT": {
-        "base": "MATIC",
-        "quote": "USDT"
-    },
-    "APEUSDT": {
-        "base": "APE",
-        "quote": "USDT"
-    },
-    "ATOMUSDT": {
-        "base": "ATOM",
-        "quote": "USDT"
-    },
-    "CSPRUSDT": {
-        "base": "CSPR",
-        "quote": "USDT"
-    },
-    "NEARUSDT": {
-        "base": "NEAR",
-        "quote": "USDT"
-    },
-    "ROUTEUSDT": {
-        "base": "ROUTE",
-        "quote": "USDT"
-    },
-    "LQTYUSDT": {
-        "base": "LQTY",
-        "quote": "USDT"
-    },
-    "ARPAUSDT": {
-        "base": "ARPA",
-        "quote": "USDT"
-    },
-    "DOTUSDT": {
-        "base": "DOT",
-        "quote": "USDT"
-    },
-    "LUNCUSDT": {
-        "base": "LUNC",
-        "quote": "USDT"
-    },
-    "ASTRAUSDT": {
-        "base": "ASTRA",
-        "quote": "USDT"
-    },
-    "AGIXUSDT": {
-        "base": "AGIX",
-        "quote": "USDT"
-    },
-    "BSVUSDT": {
-        "base": "BSV",
-        "quote": "USDT"
-    },
-    "CHZUSDT": {
-        "base": "CHZ",
-        "quote": "USDT"
-    },
-    "IGUUSDT": {
-        "base": "IGU",
-        "quote": "USDT"
-    },
-    "XDCUSDT": {
-        "base": "XDC",
-        "quote": "USDT"
-    },
-    "LUNAUSDT": {
-        "base": "LUNA",
-        "quote": "USDT"
-    },
-    "ALGOUSDT": {
-        "base": "ALGO",
-        "quote": "USDT"
-    },
     "APTUSDT": {
         "base": "APT",
-        "quote": "USDT"
-    },
-    "UPOUSDT": {
-        "base": "UPO",
-        "quote": "USDT"
-    },
-    "LDOUSDT": {
-        "base": "LDO",
-        "quote": "USDT"
-    },
-    "OPUSDT": {
-        "base": "OP",
-        "quote": "USDT"
-    },
-    "FLAMEUSDT": {
-        "base": "FLAME",
-        "quote": "USDT"
-    },
-    "TWTUSDT": {
-        "base": "TWT",
-        "quote": "USDT"
-    },
-    "AZEROUSDT": {
-        "base": "AZERO",
-        "quote": "USDT"
-    },
-    "WMTUSDT": {
-        "base": "WMT",
-        "quote": "USDT"
-    },
-    "FTTUSDT": {
-        "base": "FTT",
-        "quote": "USDT"
-    },
-    "HEARTUSDT": {
-        "base": "HEART",
-        "quote": "USDT"
-    },
-    "SCLPUSDT": {
-        "base": "SCLP",
         "quote": "USDT"
     },
     "FILUSDT": {
         "base": "FIL",
         "quote": "USDT"
     },
-    "BANDUSDT": {
-        "base": "BAND",
+    "XLMUSDT": {
+        "base": "XLM",
         "quote": "USDT"
     },
-    "UNIUSDT": {
-        "base": "UNI",
-        "quote": "USDT"
-    },
-    "YGGUSDT": {
-        "base": "YGG",
-        "quote": "USDT"
-    },
-    "QNTUSDT": {
-        "base": "QNT",
-        "quote": "USDT"
-    },
-    "DASHUSDT": {
-        "base": "DASH",
-        "quote": "USDT"
-    },
-    "LIKEUSDT": {
-        "base": "LIKE",
+    "STXUSDT": {
+        "base": "STX",
         "quote": "USDT"
     },
     "CFXUSDT": {
         "base": "CFX",
         "quote": "USDT"
     },
-    "MMUSDT": {
-        "base": "MM",
+    "SUIUSDT": {
+        "base": "SUI",
         "quote": "USDT"
     },
-    "EOSUSDT": {
-        "base": "EOS",
+    "OPUSDT": {
+        "base": "OP",
         "quote": "USDT"
     },
-    "BOBAUSDT": {
-        "base": "BOBA",
-        "quote": "USDT"
-    },
-    "TENETUSDT": {
-        "base": "TENET",
-        "quote": "USDT"
-    },
-    "HYDRAUSDT": {
-        "base": "HYDRA",
-        "quote": "USDT"
-    },
-    "NXRAUSDT": {
-        "base": "NXRA",
-        "quote": "USDT"
-    },
-    "TRBUSDT": {
-        "base": "TRB",
-        "quote": "USDT"
-    },
-    "XDBUSDT": {
-        "base": "XDB",
-        "quote": "USDT"
-    },
-    "TARAUSDT": {
-        "base": "TARA",
-        "quote": "USDT"
-    },
-    "BOBUSDT": {
-        "base": "BOBUS",
-        "quote": "USDT"
-    },
-    "BDXUSDT": {
-        "base": "BDX",
-        "quote": "USDT"
-    },
-    "BLZUSDT": {
-        "base": "BLZ",
-        "quote": "USDT"
-    },
-    "KCSUSDT": {
-        "base": "KCS",
-        "quote": "USDT"
-    },
-    "CGPTUSDT": {
-        "base": "CGPT",
-        "quote": "USDT"
-    },
-    "PYRUSDT": {
-        "base": "PYR",
-        "quote": "USDT"
-    },
-    "KDAUSDT": {
-        "base": "KDA",
-        "quote": "USDT"
-    },
-    "AKTUSDT": {
-        "base": "AKT",
-        "quote": "USDT"
-    },
-    "BURGERUSDT": {
-        "base": "BURGER",
-        "quote": "USDT"
-    },
-    "1EARTHUSDT": {
-        "base": "1EARTH",
-        "quote": "USDT"
-    },
-    "MMMUSDT": {
-        "base": "MMM",
-        "quote": "USDT"
-    },
-    "THETAUSDT": {
-        "base": "THETA",
-        "quote": "USDT"
-    },
-    "H2OUSDT": {
-        "base": "H2O",
-        "quote": "USDT"
-    },
-    "SEIUSDT": {
-        "base": "SEI",
-        "quote": "USDT"
-    },
-    "UNFIUSDT": {
-        "base": "UNFI",
-        "quote": "USDT"
-    },
-    "VETUSDT": {
-        "base": "VET",
+    "FTMUSDT": {
+        "base": "FTM",
         "quote": "USDT"
     },
     "WOOUSDT": {
         "base": "WOO",
         "quote": "USDT"
     },
-    "TRACUSDT": {
-        "base": "TRAC",
+    "GALAUSDT": {
+        "base": "GALA",
         "quote": "USDT"
     },
-    "EWTUSDT": {
-        "base": "EWT",
-        "quote": "USDT"
-    },
-    "FITFIUSDT": {
-        "base": "FITFI",
-        "quote": "USDT"
-    },
-    "MBLUSDT": {
-        "base": "MBL",
-        "quote": "USDT"
-    },
-    "ROSEUSDT": {
-        "base": "ROSE",
-        "quote": "USDT"
-    },
-    "JASMYUSDT": {
-        "base": "JASMY",
-        "quote": "USDT"
-    },
-    "XRDUSDT": {
-        "base": "XRD",
-        "quote": "USDT"
-    },
-    "DYDXUSDT": {
-        "base": "DYDX",
-        "quote": "USDT"
-    },
-    "LOCUSUSDT": {
-        "base": "LOC",
-        "quote": "USDT"
-    },
-    "TLOSUSDT": {
-        "base": "TLOS",
-        "quote": "USDT"
-    },
-    "HFTUSDT": {
-        "base": "HFT",
-        "quote": "USDT"
-    },
-    "CRVUSDT": {
-        "base": "CRV",
-        "quote": "USDT"
-    },
-    "FLUXUSDT": {
-        "base": "FLUX",
-        "quote": "USDT"
-    },
-    "INFRAUSDT": {
-        "base": "INFRA",
-        "quote": "USDT"
-    },
-    "SKEYUSDT": {
-        "base": "SKEY",
-        "quote": "USDT"
-    },
-    "FRAUSDT": {
-        "base": "FRA",
-        "quote": "USDT"
-    },
-    "TRIASUSDT": {
-        "base": "TRIAS",
-        "quote": "USDT"
-    },
-    "MAHAUSDT": {
-        "base": "MAHA",
-        "quote": "USDT"
-    },
-    "NAVIUSDT": {
-        "base": "NAVI",
-        "quote": "USDT"
-    },
-    "CHMBUSDT": {
-        "base": "CHMB",
-        "quote": "USDT"
-    },
-    "FTUSDT": {
-        "base": "FT",
-        "quote": "USDT"
-    },
-    "WOOPUSDT": {
-        "base": "WOOP",
+    "FLOWUSDT": {
+        "base": "FLOW",
         "quote": "USDT"
     },
     "SANDUSDT": {
         "base": "SAND",
         "quote": "USDT"
     },
-    "MCUSDT": {
-        "base": "MC",
+    "APEUSDT": {
+        "base": "APE",
         "quote": "USDT"
     },
-    "VRUSDT": {
-        "base": "VR",
+    "CHZUSDT": {
+        "base": "CHZ",
         "quote": "USDT"
     },
-    "MELOSUSDT": {
-        "base": "MELOS",
+    "COMPUSDT": {
+        "base": "COMP",
         "quote": "USDT"
     },
-    "VELOUSDT": {
-        "base": "VELO",
+    "LDOUSDT": {
+        "base": "LDO",
         "quote": "USDT"
     },
-    "POLXUSDT": {
-        "base": "POLX",
+    "GRTUSDT": {
+        "base": "GRT",
         "quote": "USDT"
     },
-    "XETAUSDT": {
-        "base": "XETA",
+    "GMXUSDT": {
+        "base": "GMX",
         "quote": "USDT"
     },
-    "WINUSDT": {
-        "base": "WIN",
+    "AXSUSDT": {
+        "base": "AXS",
         "quote": "USDT"
     },
-    "AMPLUSDT": {
-        "base": "AMPL",
+    "SNXUSDT": {
+        "base": "SNX",
         "quote": "USDT"
     },
-    "VAIUSDT": {
-        "base": "VAI",
+    "CRVUSDT": {
+        "base": "CRV",
         "quote": "USDT"
     },
-    "LTOUSDT": {
-        "base": "LTO",
+    "ICPUSDT": {
+        "base": "ICP",
         "quote": "USDT"
     },
-    "FETUSDT": {
-        "base": "FET",
+    "EGLDUSDT": {
+        "base": "EGLD",
         "quote": "USDT"
     },
-    "HIODUSDT": {
-        "base": "HIOD",
+    "XECUSDT": {
+        "base": "XEC",
         "quote": "USDT"
     },
-    "GLMRUSDT": {
-        "base": "GLMR",
+    "FXSUSDT": {
+        "base": "FXS",
         "quote": "USDT"
     },
-    "YLDUSDT": {
-        "base": "YLD",
+    "ZILUSDT": {
+        "base": "ZIL",
         "quote": "USDT"
     },
-    "RLTMUSDT": {
-        "base": "RLTM",
+    "KLAYUSDT": {
+        "base": "KLAY",
         "quote": "USDT"
     },
-    "AIUSDT": {
-        "base": "AI",
+    "IOTAUSDT": {
+        "base": "IOTA",
         "quote": "USDT"
     },
-    "BAXUSDT": {
-        "base": "BAX",
+    "NFTUSDT": {
+        "base": "NFT",
         "quote": "USDT"
     },
-    "CWEBUSDT": {
-        "base": "CWEB",
+    "GMTUSDT": {
+        "base": "GMT",
         "quote": "USDT"
     },
-    "GALAUSDT": {
-        "base": "GALA",
+    "WAXPUSDT": {
+        "base": "WAXP",
+        "quote": "USDT"
+    },
+    "ONEUSDT": {
+        "base": "ONE",
+        "quote": "USDT"
+    },
+    "SUSHIUSDT": {
+        "base": "SUSHI",
+        "quote": "USDT"
+    },
+    "GALUSDT": {
+        "base": "GAL",
+        "quote": "USDT"
+    },
+    "IDUSDT": {
+        "base": "ID",
+        "quote": "USDT"
+    },
+    "SUNUSDT": {
+        "base": "SUN",
+        "quote": "USDT"
+    },
+    "RNDRUSDT": {
+        "base": "RNDR",
+        "quote": "USDT"
+    },
+    "BNBUSDT": {
+        "base": "BNB",
+        "quote": "USDT"
+    },
+    "SOLUSDT": {
+        "base": "SOL",
+        "quote": "USDT"
+    },
+    "BTCUSDT": {
+        "base": "BTC",
+        "quote": "USDT"
+    },
+    "LTCUSDT": {
+        "base": "LTC",
+        "quote": "USDT"
+    },
+    "USDСUSDT": {
+        "base": "USDС",
+        "quote": "USDT"
+    },
+    "DOGEUSDT": {
+        "base": "DOGE",
+        "quote": "USDT"
+    },
+    "ETHUSDT": {
+        "base": "ETH",
+        "quote": "USDT"
+    },
+    "DASHUSDT": {
+        "base": "DASH",
+        "quote": "USDT"
+    },
+    "XMRUSDT": {
+        "base": "XMR",
+        "quote": "USDT"
+    },
+    "ETCUSDT": {
+        "base": "ETC",
+        "quote": "USDT"
+    },
+    "XRPUSDT": {
+        "base": "XRP",
+        "quote": "USDT"
+    },
+    "BCHUSDT": {
+        "base": "BCH",
+        "quote": "USDT"
+    },
+    "TRXUSDT": {
+        "base": "TRX",
+        "quote": "USDT"
+    },
+    "DAIUSDT": {
+        "base": "DAI",
+        "quote": "USDT"
+    },
+    "BTCBUSDT": {
+        "base": "BTCB",
+        "quote": "USDT"
+    },
+    "WBTCUSDT": {
+        "base": "WBTC",
+        "quote": "USDT"
+    },
+    "BSVUSDT": {
+        "base": "BSV",
+        "quote": "USDT"
+    },
+    "BTGUSDT": {
+        "base": "BTG",
+        "quote": "USDT"
+    },
+    "MATICUSDT": {
+        "base": "MATIC",
+        "quote": "USDT"
+    },
+    "ZECUSDT": {
+        "base": "ZEC",
+        "quote": "USDT"
+    },
+    "EURTUSDT": {
+        "base": "EURT",
+        "quote": "USDT"
+    },
+    "XEMUSDT": {
+        "base": "XEM",
+        "quote": "USDT"
+    },
+    "NEOUSDT": {
+        "base": "NEO",
+        "quote": "USDT"
+    },
+    "EOSUSDT": {
+        "base": "EOS",
+        "quote": "USDT"
+    },
+    "ADAUSDT": {
+        "base": "ADA",
         "quote": "USDT"
     },
     "WAVESUSDT": {
         "base": "WAVES",
         "quote": "USDT"
     },
+    "OMGUSDT": {
+        "base": "OMG",
+        "quote": "USDT"
+    },
+    "ZRXUSDT": {
+        "base": "ZRX",
+        "quote": "USDT"
+    },
+    "ICXUSDT": {
+        "base": "ICX",
+        "quote": "USDT"
+    },
+    "BTTUSDT": {
+        "base": "BTT",
+        "quote": "USDT"
+    },
+    "BATUSDT": {
+        "base": "BAT",
+        "quote": "USDT"
+    },
+    "ONTUSDT": {
+        "base": "ONT",
+        "quote": "USDT"
+    },
+    "QTUMUSDT": {
+        "base": "QTUM",
+        "quote": "USDT"
+    },
+    "LINKUSDT": {
+        "base": "LINK",
+        "quote": "USDT"
+    },
+    "ATOMUSDT": {
+        "base": "ATOM",
+        "quote": "USDT"
+    },
+    "XTZUSDT": {
+        "base": "XTZ",
+        "quote": "USDT"
+    },
+    "DOTUSDT": {
+        "base": "DOT",
+        "quote": "USDT"
+    },
+    "UNIUSDT": {
+        "base": "UNI",
+        "quote": "USDT"
+    },
+    "RVNUSDT": {
+        "base": "RVN",
+        "quote": "USDT"
+    },
+    "SHIBUSDT": {
+        "base": "SHIB",
+        "quote": "USDT"
+    },
+    "ALGOUSDT": {
+        "base": "ALGO",
+        "quote": "USDT"
+    },
+    "MKRUSDT": {
+        "base": "MKR",
+        "quote": "USDT"
+    },
+    "AVAXUSDT": {
+        "base": "AVAX",
+        "quote": "USDT"
+    },
+    "YFIUSDT": {
+        "base": "YFI",
+        "quote": "USDT"
+    },
+    "MANAUSDT": {
+        "base": "MANA",
+        "quote": "USDT"
+    },
+    "LUNAUSDT": {
+        "base": "LUNA",
+        "quote": "USDT"
+    },
+    "NEARUSDT": {
+        "base": "NEAR",
+        "quote": "USDT"
+    },
+    "CROUSDT": {
+        "base": "CRO",
+        "quote": "USDT"
+    },
+    "TONUSDT": {
+        "base": "TON",
+        "quote": "USDT"
+    }
 }

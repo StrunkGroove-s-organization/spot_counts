@@ -9,27 +9,39 @@ app.autodiscover_tasks()
 
 
 app.conf.beat_schedule = {
+
+    
+    ### Count in 3 actions
     'count-links-3-task-binance': {
-        'task': 'count_links_3.tasks.binance',
+        'task': 'count.tasks.binance',
         'schedule': 20.0,
     },
     'count-links-3-task-bybit': {
-        'task': 'count_links_3.tasks.bybit',
+        'task': 'count.tasks.bybit',
         'schedule': 20.0,
     },
     'count-links-3-task-kucoin': {
-        'task': 'count_links_3.tasks.kucoin',
+        'task': 'count.tasks.kucoin',
         'schedule': 20.0,
     },
     'count-links-3-task-huobi': {
-        'task': 'count_links_3.tasks.huobi',
+        'task': 'count.tasks.huobi',
         'schedule': 20.0,
     },
     'count-links-3-task-okx': {
-        'task': 'count_links_3.tasks.okx',
+        'task': 'count.tasks.okx',
         'schedule': 20.0,
     },
+    
 
+    ### Count in 2 actions
+    'count-task-2': {
+        'task': 'count.tasks.count_2',
+        'schedule': 10.0,
+    },
+
+
+    ### Parsing best-change
     'best-change-parsing-task': {
         'task': 'best_change_parsing.tasks.main',
         'schedule': 30.0,
@@ -39,11 +51,8 @@ app.conf.beat_schedule = {
         'schedule': 30.0,
     },
 
-    'count-task': {
-        'task': 'count.tasks.main',
-        'schedule': 10.0,
-    },
 
+    ### Parsing spot 
     'okx-task': {
         'task': 'parsers.tasks.okx',
         'schedule': 10.0,

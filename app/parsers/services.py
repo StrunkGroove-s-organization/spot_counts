@@ -63,7 +63,7 @@ class ParserBase:
     
     def parse(self, value: Union[str, float]):
         value = float(value) if value != '' else None
-        value if round(value, 0) != 0 else None
+        value = value if value != 0.0 else None
         return value
 
     def save_db(self, data: dict) -> None:
@@ -132,15 +132,18 @@ class ParserTwoRequest(ParserBase):
                 'quote': quote,
                 **params,
             }
-            new_data[f'{quote}{base}fake'] = {
-                'fake': True,
-                'quote': base,
-                'base': quote,
-                'price': 1 / params.pop('price'),
-                'ask_price': 1 / params.pop('ask_price'),
-                'bid_price': 1 / params.pop('bid_price'),
-                **params
-            }
+            try:
+                new_data[f'{quote}{base}fake'] = {
+                    'fake': True,
+                    'quote': base,
+                    'base': quote,
+                    'price': 1 / params.pop('price'),
+                    'ask_price': 1 / params.pop('ask_price'),
+                    'bid_price': 1 / params.pop('bid_price'),
+                    **params
+                }
+            except:
+                print(f'---------\n {params} \n')
 
         return new_data
 
