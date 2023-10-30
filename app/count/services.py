@@ -351,11 +351,11 @@ class CountInThree(Count):
                     spread = self.calculate_spread(price_buy, best_price, price_sell)
                     if spread < 0.2: continue
 
-                    # if ad_buy.get('fake') is True:
-                    #     price_buy = 1 / price_buy
+                    if ad_buy.get('fake') is True:
+                        price_buy = 1 / price_buy
 
-                    # if ad_sell.get('fake') is True:
-                    #     price_sell = 1 / price_sell
+                    if ad_sell.get('fake') is True:
+                        price_sell = 1 / price_sell
 
                     exchange_id = best['exchange_id']
                     hashed = self.create_hash(
