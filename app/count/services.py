@@ -115,15 +115,12 @@ class CountInTwo(Count):
         first_data = first_info.pop('data')
         second_data = second_info.pop('data')
 
-        for key_buy, ad_first in first_data.items():
-            if ad_first.get('fake') is True:
-                continue
-            
+        for ad_first in first_data.values():
             base_first = ad_first['base']
             quote_first = ad_first['quote']
             price_first = ad_first[first_price_key]
             
-            for key_sell, ad_second in second_data.items():
+            for ad_second in second_data.values():
                 base_second = ad_second['base']
                 quote_second = ad_second['quote']
 
@@ -138,6 +135,10 @@ class CountInTwo(Count):
                 if ad_second.get('fake') is True:
                     base_second, quote_second = quote_second, base_second
                     price_second = 1 / price_second
+
+                if ad_first.get('fake') is True:
+                    base_first, quote_first = quote_first, base_first
+                    price_first = 1 / price_first
 
                 if price_first >= price_second:
                     first = 'first'
