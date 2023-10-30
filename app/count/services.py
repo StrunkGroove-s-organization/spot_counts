@@ -141,7 +141,7 @@ class CountInTwo(Count):
                     base_first, quote_first = quote_first, base_first
                     price_first = 1 / price_first
 
-                if price_first >= price_second:
+                if price_first <= price_second:
                     first = 'first'
                     second = 'second'
                 else:
