@@ -101,7 +101,7 @@ class CountInTwo(Count):
     def create_key(self, trade_type, ex_first, ex_second) -> str:
         return f'{trade_type}--{ex_first}--{ex_second}'
 
-    def count(self, first_info, second_info, info):
+    def count(self, first_info, second_info, info) -> int:
         n = 0
         
         all_data = []
@@ -192,7 +192,7 @@ class CountInTwo(Count):
                 n += self.count(first_info, second_info, info)
         return n
     
-    def main(self):
+    def main(self) -> int:
         data = self.get_data()
         
         n = 0
@@ -294,7 +294,7 @@ class CountInThree(Count):
             "hash": str,
         }
 
-    def grouped(self, dict):
+    def grouped(self, dict) -> dict:
         sorted_data = sorted(
             dict,
             key=lambda x: x['spread'],
@@ -352,11 +352,9 @@ class CountInThree(Count):
                     if spread < 0.2: continue
 
                     if ad_buy.get('fake') is True:
-                        base_buy, quote_buy = quote_buy, base_buy
                         price_buy = 1 / price_buy
 
                     if ad_sell.get('fake') is True:
-                        base_sell, quote_sell = quote_sell, base_sell
                         price_sell = 1 / price_sell
 
                     exchange_id = best['exchange_id']
@@ -404,7 +402,7 @@ class CountInThree(Count):
             cache.set(key, data, self.time_cash)
         return n
 
-    def main(self):
+    def main(self) -> str:
         best_data = cache.get(self.key_best)
         if not best_data: return None
 
