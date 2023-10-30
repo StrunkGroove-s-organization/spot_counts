@@ -356,6 +356,9 @@ class CountInThree(Count):
                         self.ex, base_buy, best_base_num, best_quote_num, best_id
                     )
 
+                    if ad_buy.get('fake') is True:
+                        price_buy = 1 / price_buy
+                        
                     record = {
                         "first": {
                             "base": base_buy,
