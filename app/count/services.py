@@ -356,15 +356,16 @@ class CountInThree(Count):
                         self.ex, base_buy, best_base_num, best_quote_num, best_id
                     )
 
+                    real_price = price_buy
                     if ad_buy.get('fake') is True:
-                        price_buy = 1 / price_buy
-                        
+                        real_price = 1 / price_buy
+
                     record = {
                         "first": {
                             "base": base_buy,
-                            "price": self.custom_round(price_buy),
-                            "price_full": self.round_for_real(price_buy),
-                            "qty": ad_buy['ask_qty'] * price_buy,
+                            "price": self.custom_round(real_price),
+                            "price_full": self.round_for_real(real_price),
+                            "qty": ad_buy['ask_qty'] * real_price,
                         },
                         "best": {
                             "price": self.custom_round(best_price),
