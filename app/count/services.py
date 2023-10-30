@@ -356,20 +356,13 @@ class CountInThree(Count):
                         self.ex, base_buy, best_base_num, best_quote_num, best_id
                     )
 
-                    real_price_buy = price_buy
-                    if ad_buy.get('fake') is True:
-                        real_price_buy = 1 / price_buy
-
-                    real_price_sell = price_sell
-                    if ad_sell.get('fake') is True:
-                        real_price_sell = 1 / price_sell
 
                     record = {
                         "first": {
                             "base": base_buy,
-                            "price": self.custom_round(real_price_buy),
-                            "price_full": self.round_for_real(real_price_buy),
-                            "qty": ad_buy['ask_qty'] * real_price_buy,
+                            "price": self.custom_round(price_buy),
+                            "price_full": self.round_for_real(price_buy),
+                            "qty": ad_buy['ask_qty'] * price_buy,
                         },
                         "best": {
                             "price": self.custom_round(best_price),
@@ -385,9 +378,9 @@ class CountInThree(Count):
                         },
                         "second": {
                             "quote": quote_sell,
-                            "price": self.custom_round(real_price_sell),
-                            "price_full": self.round_for_real(real_price_sell),
-                            "qty": ad_sell['ask_qty'] * real_price_sell,
+                            "price": self.custom_round(price_sell),
+                            "price_full": self.round_for_real(price_sell),
+                            "qty": ad_sell['ask_qty'] * price_sell,
                         },
                         "spread": spread,
                         "exchange": self.ex,
