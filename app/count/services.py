@@ -128,7 +128,6 @@ class CountInTwo(Count):
 
                 price_second = ad_second[second_price_key]
 
-                if price_first >= price_second: continue
                 spread = self.calculate_spread(price_first, price_second)
                 if spread < 0.2: continue
                 
@@ -140,6 +139,7 @@ class CountInTwo(Count):
                     base_first, quote_first = quote_first, base_first
                     price_first = 1 / price_first
 
+                if price_first >= price_second: continue
                 # if price_first <= price_second:
                 #     first = 'first'
                 #     second = 'second'
