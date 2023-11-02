@@ -47,15 +47,15 @@ class CountInTwo(Count):
 
         self._bid = 'bid_price'
         self._ask = 'ask_price'
-        # self.first = {'type': 'SELL-BUY', 'buy': self._bid, 'sell': self._ask}
-        # self.second = {'type': 'SELL-SELL', 'buy': self._bid, 'sell': self._bid}
-        # self.third = {'type': 'BUY-BUY', 'buy': self._ask, 'sell': self._ask}
-        # self.four = {'type': 'BUY-SELL', 'buy': self._ask, 'sell': self._bid}
+        self.first = {'type': 'SELL-BUY', 'buy': self._bid, 'sell': self._ask} # M-M_SELL-BUY
+        self.second = {'type': 'SELL-SELL', 'buy': self._bid, 'sell': self._bid} # M-T_SELL-SELL
+        self.third = {'type': 'BUY-BUY', 'buy': self._ask, 'sell': self._ask} # T-M_BUY-BUY
+        self.four = {'type': 'BUY-SELL', 'buy': self._ask, 'sell': self._bid} # T-T_BUY-SELL
 
-        self.first = {'type': 'SELL-BUY', 'buy': self._ask, 'sell': self._bid}
-        self.second = {'type': 'SELL-SELL', 'buy': self._ask, 'sell': self._ask}
-        self.third = {'type': 'BUY-BUY', 'buy': self._bid, 'sell': self._bid}
-        self.four = {'type': 'BUY-SELL', 'buy': self._bid, 'sell': self._ask}
+        # self.first = {'type': 'SELL-BUY', 'buy': self._ask, 'sell': self._bid} # M-M_SELL-BUY
+        # self.second = {'type': 'SELL-SELL', 'buy': self._ask, 'sell': self._ask} # M-T_SELL-SELL
+        # self.third = {'type': 'BUY-BUY', 'buy': self._bid, 'sell': self._bid} # T-M_BUY-BUY
+        # self.four = {'type': 'BUY-SELL', 'buy': self._bid, 'sell': self._ask} # T-T_BUY-SELL
 
 
     def get_data(self) -> dict:
