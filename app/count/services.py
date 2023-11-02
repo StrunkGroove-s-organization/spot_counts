@@ -47,10 +47,15 @@ class CountInTwo(Count):
 
         self._bid = 'bid_price'
         self._ask = 'ask_price'
-        self.first = {'type': 'SELL-BUY', 'buy': self._bid, 'sell': self._ask}
-        self.second = {'type': 'SELL-SELL', 'buy': self._bid, 'sell': self._bid}
-        self.third = {'type': 'BUY-BUY', 'buy': self._ask, 'sell': self._ask}
-        self.four = {'type': 'BUY-SELL', 'buy': self._ask, 'sell': self._bid}
+        # self.first = {'type': 'SELL-BUY', 'buy': self._bid, 'sell': self._ask}
+        # self.second = {'type': 'SELL-SELL', 'buy': self._bid, 'sell': self._bid}
+        # self.third = {'type': 'BUY-BUY', 'buy': self._ask, 'sell': self._ask}
+        # self.four = {'type': 'BUY-SELL', 'buy': self._ask, 'sell': self._bid}
+
+        self.first = {'type': 'SELL-BUY', 'buy': self._ask, 'sell': self._bid}
+        self.second = {'type': 'SELL-SELL', 'buy': self._ask, 'sell': self._ask}
+        self.third = {'type': 'BUY-BUY', 'buy': self._bid, 'sell': self._bid}
+        self.four = {'type': 'BUY-SELL', 'buy': self._bid, 'sell': self._ask}
 
 
     def get_data(self) -> dict:
@@ -207,7 +212,7 @@ class CountInThree(Count):
     def __init__(self, dict: dict):
         super().__init__()
         self.fee = 0.15
-        self.base_token = ['USDT', 'USDC']
+        self.base_token = ['USDC']
         self.key_best = key_best_rates
         self.key = dict['key']
         self.ex = dict['ex']
