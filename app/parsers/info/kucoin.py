@@ -374,5 +374,97 @@ accept = {
     "CAKEUSDT": {
         "base": "CAKE",
         "quote": "USDT"
+    },
+    "BNBUSDC": {
+        "base": "BNB",
+        "quote": "USDC"
+    },
+    "SOLUSDC": {
+        "base": "SOL",
+        "quote": "USDC"
+    },
+    "BTCUSDC": {
+        "base": "BTC",
+        "quote": "USDC"
+    },
+    "LTCUSDC": {
+        "base": "LTC",
+        "quote": "USDC"
+    },
+    "USDTUSDC": {
+        "base": "USDT",
+        "quote": "USDC"
+    },
+    "DOGEUSDC": {
+        "base": "DOGE",
+        "quote": "USDC"
+    },
+    "ETHUSDC": {
+        "base": "ETH",
+        "quote": "USDC"
+    },
+    "ETCUSDC": {
+        "base": "ETC",
+        "quote": "USDC"
+    },
+    "XRPUSDC": {
+        "base": "XRP",
+        "quote": "USDC"
+    },
+    "BCHUSDC": {
+        "base": "BCH",
+        "quote": "USDC"
+    },
+    "TRXUSDC": {
+        "base": "TRX",
+        "quote": "USDC"
+    },
+    "BUSDUSDC": {
+        "base": "BUSD",
+        "quote": "USDC"
+    },
+    "BSVUSDC": {
+        "base": "BSV",
+        "quote": "USDC"
+    },
+    "MATICUSDC": {
+        "base": "MATIC",
+        "quote": "USDC"
+    },
+    "EOSUSDC": {
+        "base": "EOS",
+        "quote": "USDC"
+    },
+    "ADAUSDC": {
+        "base": "ADA",
+        "quote": "USDC"
+    },
+    "LINKUSDC": {
+        "base": "LINK",
+        "quote": "USDC"
+    },
+    "ATOMUSDC": {
+        "base": "ATOM",
+        "quote": "USDC"
+    },
+    "DOTUSDC": {
+        "base": "DOT",
+        "quote": "USDC"
+    },
+    "SHIBUSDC": {
+        "base": "SHIB",
+        "quote": "USDC"
+    },
+    "ALGOUSDC": {
+        "base": "ALGO",
+        "quote": "USDC"
+    },
+    "AVAXUSDC": {
+        "base": "AVAX",
+        "quote": "USDC"
+    },
+    "NEARUSDC": {
+        "base": "NEAR",
+        "quote": "USDC"
     }
 }

@@ -350,5 +350,145 @@ accept = {
     "TONUSDT": {
         "base": "TON",
         "quote": "USDT"
+    },
+    "BNBUSDC": {
+        "base": "BNB",
+        "quote": "USDC"
+    },
+    "SOLUSDC": {
+        "base": "SOL",
+        "quote": "USDC"
+    },
+    "BTCUSDC": {
+        "base": "BTC",
+        "quote": "USDC"
+    },
+    "LTCUSDC": {
+        "base": "LTC",
+        "quote": "USDC"
+    },
+    "USDTUSDC": {
+        "base": "USDT",
+        "quote": "USDC"
+    },
+    "DOGEUSDC": {
+        "base": "DOGE",
+        "quote": "USDC"
+    },
+    "ETHUSDC": {
+        "base": "ETH",
+        "quote": "USDC"
+    },
+    "DASHUSDC": {
+        "base": "DASH",
+        "quote": "USDC"
+    },
+    "XMRUSDC": {
+        "base": "XMR",
+        "quote": "USDC"
+    },
+    "ETCUSDC": {
+        "base": "ETC",
+        "quote": "USDC"
+    },
+    "XRPUSDC": {
+        "base": "XRP",
+        "quote": "USDC"
+    },
+    "BCHUSDC": {
+        "base": "BCH",
+        "quote": "USDC"
+    },
+    "TRXUSDC": {
+        "base": "TRX",
+        "quote": "USDC"
+    },
+    "BSVUSDC": {
+        "base": "BSV",
+        "quote": "USDC"
+    },
+    "MATICUSDC": {
+        "base": "MATIC",
+        "quote": "USDC"
+    },
+    "ZECUSDC": {
+        "base": "ZEC",
+        "quote": "USDC"
+    },
+    "EOSUSDC": {
+        "base": "EOS",
+        "quote": "USDC"
+    },
+    "ADAUSDC": {
+        "base": "ADA",
+        "quote": "USDC"
+    },
+    "WAVESUSDC": {
+        "base": "WAVES",
+        "quote": "USDC"
+    },
+    "OMGUSDC": {
+        "base": "OMG",
+        "quote": "USDC"
+    },
+    "LINKUSDC": {
+        "base": "LINK",
+        "quote": "USDC"
+    },
+    "ATOMUSDC": {
+        "base": "ATOM",
+        "quote": "USDC"
+    },
+    "XTZUSDC": {
+        "base": "XTZ",
+        "quote": "USDC"
+    },
+    "DOTUSDC": {
+        "base": "DOT",
+        "quote": "USDC"
+    },
+    "UNIUSDC": {
+        "base": "UNI",
+        "quote": "USDC"
+    },
+    "SHIBUSDC": {
+        "base": "SHIB",
+        "quote": "USDC"
+    },
+    "ALGOUSDC": {
+        "base": "ALGO",
+        "quote": "USDC"
+    },
+    "MKRUSDC": {
+        "base": "MKR",
+        "quote": "USDC"
+    },
+    "AVAXUSDC": {
+        "base": "AVAX",
+        "quote": "USDC"
+    },
+    "YFIUSDC": {
+        "base": "YFI",
+        "quote": "USDC"
+    },
+    "MANAUSDC": {
+        "base": "MANA",
+        "quote": "USDC"
+    },
+    "LUNAUSDC": {
+        "base": "LUNA",
+        "quote": "USDC"
+    },
+    "NEARUSDC": {
+        "base": "NEAR",
+        "quote": "USDC"
+    },
+    "CROUSDC": {
+        "base": "CRO",
+        "quote": "USDC"
+    },
+    "TONUSDC": {
+        "base": "TON",
+        "quote": "USDC"
     }
 }

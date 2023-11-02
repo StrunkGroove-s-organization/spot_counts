@@ -386,5 +386,21 @@ accept = {
     "CAKEUSDT": {
         "base": "CAKE",
         "quote": "USDT"
-    }
+    },
+    "BNBUSDC": {
+        "base": "BNB",
+        "quote": "USDC"
+    },
+    "BTCUSDC": {
+        "base": "BTC",
+        "quote": "USDC"
+    },
+    "ETHUSDC": {
+        "base": "ETH",
+        "quote": "USDC"
+    },
+    "USDTUSDC": {
+        "base": "USDT",
+        "quote": "USDC"
+    },
 }

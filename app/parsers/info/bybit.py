@@ -350,5 +350,69 @@ accept = {
     "CAKEUSDT": {
         "base": "CAKE",
         "quote": "USDT"
+    },
+    "SOLUSDC": {
+        "base": "SOL",
+        "quote": "USDC"
+    },
+    "BTCUSDC": {
+        "base": "BTC",
+        "quote": "USDC"
+    },
+    "LTCUSDC": {
+        "base": "LTC",
+        "quote": "USDC"
+    },
+    "USDTUSDC": {
+        "base": "USDT",
+        "quote": "USDC"
+    },
+    "DOGEUSDC": {
+        "base": "DOGE",
+        "quote": "USDC"
+    },
+    "ETHUSDC": {
+        "base": "ETH",
+        "quote": "USDC"
+    },
+    "XRPUSDC": {
+        "base": "XRP",
+        "quote": "USDC"
+    },
+    "TRXUSDC": {
+        "base": "TRX",
+        "quote": "USDC"
+    },
+    "MATICUSDC": {
+        "base": "MATIC",
+        "quote": "USDC"
+    },
+    "EOSUSDC": {
+        "base": "EOS",
+        "quote": "USDC"
+    },
+    "ADAUSDC": {
+        "base": "ADA",
+        "quote": "USDC"
+    },
+    "LINKUSDC": {
+        "base": "LINK",
+        "quote": "USDC"
+    },
+    "DOTUSDC": {
+        "base": "DOT",
+        "quote": "USDC"
+    },
+    "SHIBUSDC": {
+        "base": "SHIB",
+        "quote": "USDC"
+    },
+    "AVAXUSDC": {
+        "base": "AVAX",
+        "quote": "USDC"
+    },
+    "MANAUSDC": {
+        "base": "MANA",
+        "quote": "USDC"
     }
 }
