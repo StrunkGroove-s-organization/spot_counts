@@ -212,7 +212,7 @@ class CountInThree(Count):
     def __init__(self, dict: dict):
         super().__init__()
         self.fee = 0.15
-        self.base_token = ['USDT']
+        self.base_token = ['USDT', 'USDC']
         self.key_best = key_best_rates
         self.key = dict['key']
         self.ex = dict['ex']
