@@ -47,16 +47,10 @@ class CountInTwo(Count):
 
         self._bid = 'bid_price'
         self._ask = 'ask_price'
-        self.first = {'type': 'SELL-BUY', 'buy': self._bid, 'sell': self._ask} # M-M_SELL-BUY
-        self.second = {'type': 'SELL-SELL', 'buy': self._bid, 'sell': self._bid} # M-T_SELL-SELL
-        self.third = {'type': 'BUY-BUY', 'buy': self._ask, 'sell': self._ask} # T-M_BUY-BUY
-        self.four = {'type': 'BUY-SELL', 'buy': self._ask, 'sell': self._bid} # T-T_BUY-SELL
-
-        # self.first = {'type': 'SELL-BUY', 'buy': self._ask, 'sell': self._bid} # M-M_SELL-BUY
-        # self.second = {'type': 'SELL-SELL', 'buy': self._ask, 'sell': self._ask} # M-T_SELL-SELL
-        # self.third = {'type': 'BUY-BUY', 'buy': self._bid, 'sell': self._bid} # T-M_BUY-BUY
-        # self.four = {'type': 'BUY-SELL', 'buy': self._bid, 'sell': self._ask} # T-T_BUY-SELL
-
+        self.first = {'type': 'SELL-BUY', 'buy': self._bid, 'sell': self._ask} # M-M -> SELL-BUY
+        self.second = {'type': 'SELL-SELL', 'buy': self._bid, 'sell': self._bid} # M-T -> SELL-SELL
+        self.third = {'type': 'BUY-BUY', 'buy': self._ask, 'sell': self._ask} # T-M -> BUY-BUY
+        self.four = {'type': 'BUY-SELL', 'buy': self._ask, 'sell': self._bid} # T-T -> BUY-SELL
 
     def get_data(self) -> dict:
         dict = {
@@ -146,15 +140,15 @@ class CountInTwo(Count):
                     base_first, quote_first = quote_first, base_first
                     price_first = 1 / price_first
 
-                if price_first <= price_second:
-                    first = 'first'
-                    second = 'second'
-                else:
-                    second = 'first'
-                    first = 'second'
+                # if price_first <= price_second:
+                #     first = 'first'
+                #     second = 'second'
+                # else:
+                #     second = 'first'
+                #     first = 'second'
 
                 record = {
-                    first: {
+                    "first": {
                         "exchange": ex_first,
                         "price": self.custom_round(price_first),
                         "full_price": self.round_for_real(price_first),
@@ -163,7 +157,7 @@ class CountInTwo(Count):
                         'base': base_first,
                         'quote': quote_first,
                     },
-                    second: {
+                    "second": {
                         "exchange": ex_second,
                         "price": self.custom_round(price_second),
                         "full_price": self.round_for_real(price_second),
