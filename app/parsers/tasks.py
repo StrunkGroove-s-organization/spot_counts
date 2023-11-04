@@ -143,7 +143,13 @@ def kucoin():
             Removing extra characters from a character
             """
             return token.replace('-', '')
-        
+
+        def append_action_qty(self, qty: str) -> str:
+            """
+            Override class because sometimes qty are not valid
+            """
+            return float(qty) / 1440
+
     kucoin = KucoinParser(key, kucoin)
     return kucoin.get_cleaned_data()
 
@@ -160,7 +166,7 @@ def gateio():
         "symbol": "currency_pair",
         "ex": key,
 
-        "ask_qty": "base_volume", 
+        "ask_qty": "quote_volume", 
         "bid_qty": "quote_volume", 
         "ask_price": "lowest_ask", 
         "bid_price": "highest_bid", 
@@ -172,7 +178,13 @@ def gateio():
             Removing extra characters from a character
             """
             return token.replace('_', '')
-        
+
+        def append_action_qty(self, qty: float) -> float:
+            """
+            Override class because sometimes qty are not valid
+            """
+            return float(qty) / 1440
+
     gateio = GateioParser(key, gateio)
     return gateio.get_cleaned_data()
 

@@ -40,7 +40,7 @@ class ParserBase:
         except requests.exceptions.RequestException as e:
             return None
         
-    def unpack(self, data: dict, path_list: list):
+    def unpack(self, data: dict, path_list: list) -> dict:
         """
         Return flat list
         """
@@ -49,19 +49,31 @@ class ParserBase:
                 data = data[path]
         return data
 
-    def append_action(self, token: str):
+    def append_action(self, token: str) -> str:
         """
         Override class because sometimes symbols are present in characters
         """
         return token
+
+    def append_action_qty(self, qty: float) -> float:
+        """
+        Override class because sometimes qty are not valid
+        """
+        return qty
 
     def get_token(self, ad: dict) -> str:
         """
         Get token from single dict of symbol info
         """
         return self.append_action(ad[self.symbol])
-    
-    def parse(self, value: Union[str, float]):
+
+    def get_token_qty(self, ad: dict, type_qty: str) -> float:
+        """
+        Get qty from ad
+        """
+        return self.append_action_qty(ad[type_qty])
+
+    def parse(self, value: Union[str, float]) -> float:
         value = float(value) if value != '' else None
         value = value if value != 0.0 else None
         return value
@@ -119,8 +131,8 @@ class ParserTwoRequest(ParserBase):
                 "price": self.parse(ad[self.price]),
                 "bid_price": self.parse(add_ad[self.bid_price]),
                 "ask_price": self.parse(add_ad[self.ask_price]),
-                "bid_qty": self.parse(add_ad[self.bid_qty]),
-                "ask_qty": self.parse(add_ad[self.ask_qty]),
+                "bid_qty": self.parse(self.get_token_qty(add_ad, self.bid_qty)),
+                "ask_qty": self.parse(self.get_token_qty(add_ad, self.ask_qty)),
                 "ex": self.ex,
             }
 
@@ -193,8 +205,8 @@ class ParserSimple(ParserBase):
                 "price": self.parse(ad[self.price]),
                 "bid_price": self.parse(ad[self.bid_price]),
                 "ask_price": self.parse(ad[self.ask_price]),
-                "bid_qty": self.parse(ad[self.bid_qty]),
-                "ask_qty": self.parse(ad[self.ask_qty]),
+                "bid_qty": self.parse(self.get_token_qty(ad, self.bid_qty)),
+                "ask_qty": self.parse(self.get_token_qty(ad, self.ask_qty)),
                 "ex": self.ex,
             }
 

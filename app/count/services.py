@@ -140,12 +140,6 @@ class CountInTwo(Count):
                     price_first = 1 / price_first
 
                 if price_first >= price_second: continue
-                # if price_first <= price_second:
-                #     first = 'first'
-                #     second = 'second'
-                # else:
-                #     second = 'first'
-                #     first = 'second'
 
                 record = {
                     "first": {
@@ -205,7 +199,6 @@ class CountInTwo(Count):
 class CountInThree(Count):
     def __init__(self, dict: dict):
         super().__init__()
-        self.fee = 0.15
         self.base_token = ['USDT', 'USDC']
         self.key_best = key_best_rates
         self.key = dict['key']
