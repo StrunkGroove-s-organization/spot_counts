@@ -8,6 +8,13 @@ from parsers.info.gateio import accept as gateio_accept
 from parsers.info.mexc import accept as mexc_accept
 from parsers.info.bitget import accept as bitget_accept
 from .services import ParserSimple, ParserTwoRequest
+from parsers.info.info import bybit as network_bybit
+from parsers.info.info import binance as network_binance
+from parsers.info.info import kucoin as network_kucoin
+from parsers.info.info import huobi as network_huobi
+from parsers.info.info import bitget as network_bitget
+from parsers.info.info import gateio as network_gateio
+from parsers.info.info import okx as network_okx
 
 
 @app.task
@@ -23,6 +30,7 @@ def okx():
         "price": "last",
         "symbol": "instId", 
         "ex": key,
+        "network": network_okx, 
 
         "ask_qty": "askSz", 
         "bid_qty": "bidSz", 
@@ -52,6 +60,7 @@ def binance():
         "price": "price",
         "symbol": "symbol", 
         "ex": key,
+        "network": network_binance, 
 
         "add_url": "https://api.binance.com/api/v3/ticker/bookTicker",
         "ask_qty": "askQty", 
@@ -76,6 +85,7 @@ def bybit():
         "price": "price",
         "symbol": "symbol", 
         "ex": key,
+        "network": network_bybit, 
 
         "add_url": "https://api.bybit.com/spot/v3/public/quote/ticker/bookTicker",
         "ask_qty": "askQty", 
@@ -100,6 +110,7 @@ def huobi():
         "price": "close",
         "symbol": "symbol", 
         "ex": key, 
+        "network": network_huobi, 
 
         "ask_qty": "askSize", 
         "bid_qty": "bidSize", 
@@ -130,6 +141,7 @@ def kucoin():
         "price": "last",
         "symbol": "symbol", 
         "ex": key, 
+        "network": network_kucoin, 
 
         "ask_qty": "volValue", 
         "bid_qty": "volValue", 
@@ -165,6 +177,7 @@ def gateio():
         "price": "last",
         "symbol": "currency_pair",
         "ex": key,
+        "network": network_gateio, 
 
         "ask_qty": "quote_volume", 
         "bid_qty": "quote_volume", 
@@ -201,6 +214,7 @@ def bitget():
         "price": "close",
         "symbol": "symbol", 
         "ex": key,
+        "network": network_bitget, 
 
         "ask_qty": "askSz", 
         "bid_qty": "bidSz", 

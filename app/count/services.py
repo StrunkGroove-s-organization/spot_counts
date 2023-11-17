@@ -18,7 +18,7 @@ key_best_rates = 'rates'
 
 class Count:
     def __init__(self):
-        self.fee = 0.15
+        self.fee = 0
 
         self.round_num = 4
         self.if_small_num = '0.000...'
@@ -150,6 +150,7 @@ class CountInTwo(Count):
                         "ask_qty": ad_first['ask_qty'],
                         'base': base_first,
                         'quote': quote_first,
+                        "networks": ad_first['networks'],
                     },
                     "second": {
                         "exchange": ex_second,
@@ -159,6 +160,7 @@ class CountInTwo(Count):
                         "ask_qty": ad_second['ask_qty'],
                         'base': base_second,
                         'quote': quote_second,
+                        "networks": ad_second['networks'],
                     },
                     'spread': spread,
                     'hash': self.create_hash(base_first, base_second, ex_first, ex_second),
@@ -369,8 +371,7 @@ class CountInThree(Count):
                             "base": crypto_info[best_base_num],
                             "quote": crypto_info[best_quote_num],
                             "exchange_info": exchange_info[exchange_id],
-                            "available": best['available']
-,
+                            "available": best['available'] * real_price_sell,
                             "negative_reviews": best['negative_reviews'],
                             "positive_reviews": best['positive_reviews'],
                             "lim_min": round(best['lim_min'] * best_price, 3),

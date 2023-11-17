@@ -22,9 +22,10 @@ class ParserBase:
 
         # main info about symbols
         self.ex = dict['ex']
-        self.accept = dict['accept']
-        self.price = dict['price']
         self.symbol = dict['symbol']
+        self.price = dict['price']
+        self.accept = dict['accept']
+        self.network = dict['network']
         self.ask_qty = dict['ask_qty']
         self.bid_qty = dict['bid_qty']
         self.ask_price = dict['ask_price']
@@ -77,6 +78,17 @@ class ParserBase:
         value = float(value) if value != '' else None
         value = value if value != 0.0 else None
         return value
+
+    def get_networks(self, base: str, quote: str) -> list:
+        """
+        Get network form dict about networks by crypto pair
+        """
+        token = base + quote
+        networks = self.network.get(token)
+        if not networks:
+            token = quote + base
+            networks = self.network.get(token)
+        return networks
 
     def save_db(self, data: dict) -> None:
         """
@@ -138,10 +150,13 @@ class ParserTwoRequest(ParserBase):
 
             if None in params.values():
                 continue
+            
+            networks = self.get_networks(base, quote)
 
             new_data[f'{base}{quote}'] = {
                 'base': base,
                 'quote': quote,
+                'networks': networks,
                 **params,
             }
             try:
@@ -149,6 +164,7 @@ class ParserTwoRequest(ParserBase):
                     'fake': True,
                     'quote': base,
                     'base': quote,
+                    'networks': networks,
                     'price': 1 / params.pop('price'),
                     'ask_price': 1 / params.pop('ask_price'),
                     'bid_price': 1 / params.pop('bid_price'),
@@ -185,6 +201,7 @@ class ParserSimple(ParserBase):
     """
     A class where price and data about order book in one request
     """
+
     def transformation(self, data: dict) -> list:
         """
         Merge three dict: 
@@ -201,6 +218,7 @@ class ParserSimple(ParserBase):
             base = info["base"]
             quote = info["quote"]
 
+
             params = {
                 "price": self.parse(ad[self.price]),
                 "bid_price": self.parse(ad[self.bid_price]),
@@ -212,16 +230,20 @@ class ParserSimple(ParserBase):
 
             if None in params.values():
                 continue
+            
+            networks = self.get_networks(base, quote)
 
             new_data[f'{base}{quote}'] = {
                 'base': base,
                 'quote': quote,
+                'networks': networks,
                 **params,
             }
             new_data[f'{quote}{base}fake'] = {
                 'fake': True,
                 'quote': base,
                 'base': quote,
+                'networks': networks,
                 'price': 1 / params.pop('price'),
                 'ask_price': 1 / params.pop('ask_price'),
                 'bid_price': 1 / params.pop('bid_price'),
