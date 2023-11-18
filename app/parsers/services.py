@@ -88,6 +88,8 @@ class ParserBase:
         if not networks:
             token = quote + base
             networks = self.network.get(token)
+        if networks is None:
+            networks = {}
         return networks
 
     def save_db(self, data: dict) -> None:
