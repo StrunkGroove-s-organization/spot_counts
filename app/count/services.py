@@ -100,6 +100,16 @@ class CountInTwo(Count):
     def create_key(self, trade_type, ex_first, ex_second) -> str:
         return f'{trade_type}--{ex_first}--{ex_second}'
 
+    def get_networks(self, networks, price):
+        if networks == {}: return networks
+        
+        new_networks = {}
+
+        for network, fee in networks.items():
+            new_networks[network] = fee * price
+
+        return new_networks
+
     def count(self, first_info, second_info, info) -> int:
         n = 0
         
@@ -141,9 +151,6 @@ class CountInTwo(Count):
 
                 if price_first >= price_second: continue
 
-                networks_buy = {key: round(fee * price_first, 5) for key, fee in ad_first['networks'].items()}
-                networks_sell = {key: round(fee * price_second, 5) for key, fee in ad_second['networks'].items()}
-
                 record = {
                     "first": {
                         "exchange": ex_first,
@@ -153,7 +160,7 @@ class CountInTwo(Count):
                         "ask_qty": ad_first['ask_qty'],
                         'base': base_first,
                         'quote': quote_first,
-                        "networks": networks_buy,
+                        "networks": self.get_networks(ad_first['networks'], price_first),
                     },
                     "second": {
                         "exchange": ex_second,
@@ -163,7 +170,7 @@ class CountInTwo(Count):
                         "ask_qty": ad_second['ask_qty'],
                         'base': base_second,
                         'quote': quote_second,
-                        "networks": networks_sell,
+                        "networks": self.get_networks(ad_second['networks'], price_second),
                     },
                     'spread': spread,
                     'hash': self.create_hash(
