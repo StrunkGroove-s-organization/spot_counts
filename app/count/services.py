@@ -141,6 +141,9 @@ class CountInTwo(Count):
 
                 if price_first >= price_second: continue
 
+                networks_buy = {key: fee * price_first for key, fee in ad_first['networks'].items()}
+                networks_sell = {key: fee * price_second for key, fee in ad_second['networks'].items()}
+
                 record = {
                     "first": {
                         "exchange": ex_first,
@@ -150,7 +153,7 @@ class CountInTwo(Count):
                         "ask_qty": ad_first['ask_qty'],
                         'base': base_first,
                         'quote': quote_first,
-                        "networks": ad_first['networks'],
+                        "networks": networks_buy,
                     },
                     "second": {
                         "exchange": ex_second,
@@ -160,10 +163,12 @@ class CountInTwo(Count):
                         "ask_qty": ad_second['ask_qty'],
                         'base': base_second,
                         'quote': quote_second,
-                        "networks": ad_second['networks'],
+                        "networks": networks_sell,
                     },
                     'spread': spread,
-                    'hash': self.create_hash(base_first, base_second, ex_first, ex_second),
+                    'hash': self.create_hash(
+                        base_first, base_second,ex_first, ex_second
+                    ),
                 }
                 
                 all_data.append(record)
