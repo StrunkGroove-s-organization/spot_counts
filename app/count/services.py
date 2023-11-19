@@ -141,8 +141,8 @@ class CountInTwo(Count):
 
                 if price_first >= price_second: continue
 
-                networks_buy = {key: fee * price_first for key, fee in ad_first['networks'].items()}
-                networks_sell = {key: fee * price_second for key, fee in ad_second['networks'].items()}
+                networks_buy = {key: round(fee * price_first, 5) for key, fee in ad_first['networks'].items()}
+                networks_sell = {key: round(fee * price_second, 5) for key, fee in ad_second['networks'].items()}
 
                 record = {
                     "first": {
