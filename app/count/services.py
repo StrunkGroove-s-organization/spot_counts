@@ -374,7 +374,7 @@ class CountInThree(Count):
                             "available": best['available'] * real_price_sell,
                             "negative_reviews": best['negative_reviews'],
                             "positive_reviews": best['positive_reviews'],
-                            "lim_min": round(best['lim_min'] * best_price, 3),
+                            "lim_min": round(best['lim_min'] * real_price_buy, 3),
                         },
                         "second": {
                             "quote": quote_sell,
