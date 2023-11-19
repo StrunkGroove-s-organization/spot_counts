@@ -100,13 +100,13 @@ class CountInTwo(Count):
     def create_key(self, trade_type, ex_first, ex_second) -> str:
         return f'{trade_type}--{ex_first}--{ex_second}'
 
-    def get_networks(self, networks, price):
+    def get_networks(self, networks: dict, price: float):
         if networks == {}: return networks
         
         new_networks = {}
 
         for network, fee in networks.items():
-            new_networks[network] = fee * price
+            new_networks[network] = float(fee) * price
 
         return new_networks
 
