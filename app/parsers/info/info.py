@@ -496,7 +496,7 @@ gateio = {
     'CHZUSDT': {'ERC20': 65, 'Chiliz Chain': 1},
     'COMPUSDT': {'ERC20': 0.092},
     'LDOUSDT': {'ERC20': 5.6},
-    'GRTUSDT': {'ERC20': '32 GRT', 'ARBITRUMONE': 10},
+    'GRTUSDT': {'ERC20': 32, 'ARBITRUMONE': 10},
     'GMXUSDT': {'Arbitrum One': 0.05},
     'AXSUSDT': {'ERC20': 0.81},
     'SNXUSDT': {'ERC20': 3.5, 'Optimism': 0.4},

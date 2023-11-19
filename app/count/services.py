@@ -106,7 +106,12 @@ class CountInTwo(Count):
         new_networks = {}
 
         for network, fee in networks.items():
-            new_networks[network] = float(fee) * price
+            try:
+                fee = float(fee)
+            except ValueError as ve:
+                return networks
+            
+            new_networks[network] = fee * price
 
         return new_networks
 
