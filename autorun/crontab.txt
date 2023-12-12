@@ -1,0 +1,1 @@
+@reboot /home/sammy/majors_site/autorun/start.sh
