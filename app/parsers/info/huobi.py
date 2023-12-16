@@ -436,7 +436,6 @@ accept = {
     "STGUSDT": {"base": "STG", "quote": "USDT"},
     "STEEMUSDT": {"base": "STEEM", "quote": "USDT"},
     "PLAUSDT": {"base": "PLA", "quote": "USDT"},
-    "TRACUSDT": {"base": "TRAC", "quote": "USDT"},
     "YGGUSDT": {"base": "YGG", "quote": "USDT"},
     "JOEUSDT": {"base": "JOE", "quote": "USDT"},
     "CVCUSDT": {"base": "CVC", "quote": "USDT"},
@@ -448,5 +447,4 @@ accept = {
     "DAOUSDT": {"base": "DAO", "quote": "USDT"},
     "MLKUSDT": {"base": "MLK", "quote": "USDT"},
     "OGNUSDT": {"base": "OGN", "quote": "USDT"},
-    "XNOUSDT": {"base": "XNO", "quote": "USDT"},
 }

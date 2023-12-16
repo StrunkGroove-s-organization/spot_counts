@@ -420,7 +420,6 @@ accept = {
     "GLMRUSDT": {"base": "GLMR", "quote": "USDT"},
     "HIVEUSDT": {"base": "HIVE", "quote": "USDT"},
     "STORJUSDT": {"base": "STORJ", "quote": "USDT"},
-    "AXLUSDT": {"base": "AXL", "quote": "USDT"},
     "ETHWUSDT": {"base": "ETHW", "quote": "USDT"},
     "IOSTUSDT": {"base": "IOST", "quote": "USDT"},
     "SSVUSDT": {"base": "SSV", "quote": "USDT"},
