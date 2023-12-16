@@ -399,20 +399,42 @@ accept = {
         "base": "LINK",
         "quote": "USDC"
     },
-    "DOTUSDC": {
-        "base": "DOT",
-        "quote": "USDC"
-    },
-    "SHIBUSDC": {
-        "base": "SHIB",
-        "quote": "USDC"
-    },
-    "AVAXUSDC": {
-        "base": "AVAX",
-        "quote": "USDC"
-    },
-    "MANAUSDC": {
-        "base": "MANA",
-        "quote": "USDC"
-    }
+    "DOTUSDC": {"base": "DOT", "quote": "USDC"},
+    "SHIBUSDC": {"base": "SHIB", "quote": "USDC"},
+    "AVAXUSDC": {"base": "AVAX", "quote": "USDC"},
+    "MANAUSDC": {"base": "MANA", "quote": "USDC"},
+    "SEIUSDT": {"base": "SEI", "quote": "USDT"},
+    "SCUSDT": {"base": "SC", "quote": "USDT"},
+    "JASMYUSDT": {"base": "JASMY", "quote": "USDT"},
+    "WLDUSDT": {"base": "WLD", "quote": "USDT"},
+    "GLMRUSDT": {"base": "GLMR", "quote": "USDT"},
+    "AXLUSDT": {"base": "AXL", "quote": "USDT"},
+    "ETHWUSDT": {"base": "ETHW", "quote": "USDT"},
+    "SSVUSDT": {"base": "SSV", "quote": "USDT"},
+    "ZENUSDT": {"base": "ZEN", "quote": "USDT"},
+    "BICOUSDT": {"base": "BICO", "quote": "USDT"},
+    "MEMEUSDT": {"base": "MEME", "quote": "USDT"},
+    "TOMIUSDT": {"base": "TOMI", "quote": "USDT"},
+    "MAGICUSDT": {"base": "MAGIC", "quote": "USDT"},
+    "KDAUSDT": {"base": "KDA", "quote": "USDT"},
+    "ACHUSDT": {"base": "ACH", "quote": "USDT"},
+    "DGBUSDT": {"base": "DGB", "quote": "USDT"},
+    "stETHUSDT": {"base": "stETH", "quote": "USDT"},
+    "KASUSDT": {"base": "KAS", "quote": "USDT"},
+    "WEMIXUSDT": {"base": "WEMIX", "quote": "USDT"},
+    "FTTUSDT": {"base": "FTT", "quote": "USDT"},
+    "PENDLEUSDT": {"base": "PENDLE", "quote": "USDT"},
+    "DFIUSDT": {"base": "DFI", "quote": "USDT"},
+    "BabyDogeUSDT": {"base": "BabyDoge", "quote": "USDT"},
+    "XYMUSDT": {"base": "XYM", "quote": "USDT"},
+    "TELUSDT": {"base": "TEL", "quote": "USDT"},
+    "TRIBEUSDT": {"base": "TRIBE", "quote": "USDT"},
+    "GNSUSDT": {"base": "GNS", "quote": "USDT"},
+    "GASUSDT": {"base": "GAS", "quote": "USDT"},
+    "UMAUSDT": {"base": "UMA", "quote": "USDT"},
+    "STGUSDT": {"base": "STG", "quote": "USDT"},
+    "USTCUSDT": {"base": "USTC", "quote": "USDT"},
+    "PRIMEUSDT": {"base": "PRIME", "quote": "USDT"},
+    "SLPUSDT": {"base": "SLP", "quote": "USDT"},
+    "MVLUSDT": {"base": "MVL", "quote": "USDT"},
 }
