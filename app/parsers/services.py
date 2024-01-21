@@ -31,6 +31,7 @@ class ParserBase:
         self.ask_price = dict['ask_price']
         self.bid_price = dict['bid_price']
         self.path_list = dict.get('path')
+        self.futures_set = dict['futures_set']
 
     def request(self, url: str) -> dict:
         """
@@ -85,7 +86,7 @@ class ParserBase:
         """
         token = base + quote
         networks = self.network.get(token)
-        if not networks:
+        if networks is None:
             token = quote + base
             networks = self.network.get(token)
         if networks is None:
@@ -152,28 +153,26 @@ class ParserTwoRequest(ParserBase):
 
             if None in params.values():
                 continue
-            
-            networks = self.get_networks(base, quote)
+
+            if self.futures_set:
+                params["futures"] = f"{base}{quote}" in self.futures_set
+
+            params["networks"] = self.get_networks(base, quote)
 
             new_data[f'{base}{quote}'] = {
                 'base': base,
                 'quote': quote,
-                'networks': networks,
                 **params,
             }
-            try:
-                new_data[f'{quote}{base}fake'] = {
-                    'fake': True,
-                    'quote': base,
-                    'base': quote,
-                    'networks': networks,
-                    'price': 1 / params.pop('price'),
-                    'ask_price': 1 / params.pop('ask_price'),
-                    'bid_price': 1 / params.pop('bid_price'),
-                    **params
-                }
-            except:
-                print(f'---------\n {params} \n')
+            new_data[f'{quote}{base}fake'] = {
+                'fake': True,
+                'quote': base,
+                'base': quote,
+                'price': 1 / params.pop('price'),
+                'ask_price': 1 / params.pop('ask_price'),
+                'bid_price': 1 / params.pop('bid_price'),
+                **params
+            }
 
         return new_data
 
@@ -232,20 +231,21 @@ class ParserSimple(ParserBase):
 
             if None in params.values():
                 continue
-            
-            networks = self.get_networks(base, quote)
+
+            if self.futures_set:
+                params["futures"] = f"{base}{quote}" in self.futures_set            
+
+            params["networks"] = self.get_networks(base, quote)
 
             new_data[f'{base}{quote}'] = {
                 'base': base,
                 'quote': quote,
-                'networks': networks,
                 **params,
             }
             new_data[f'{quote}{base}fake'] = {
                 'fake': True,
                 'quote': base,
                 'base': quote,
-                'networks': networks,
                 'price': 1 / params.pop('price'),
                 'ask_price': 1 / params.pop('ask_price'),
                 'bid_price': 1 / params.pop('bid_price'),

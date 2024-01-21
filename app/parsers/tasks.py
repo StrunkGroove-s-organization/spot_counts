@@ -1,20 +1,25 @@
 from main.celery import app
-from parsers.info.okx import accept as okx_accept
-from parsers.info.binance import accept as binance_accept
-from parsers.info.bybit import accept as bybit_accept
-from parsers.info.huobi import accept as huobi_accept
-from parsers.info.kucoin import accept as kucoin_accept
-from parsers.info.gateio import accept as gateio_accept
-from parsers.info.mexc import accept as mexc_accept
-from parsers.info.bitget import accept as bitget_accept
 from .services import ParserSimple, ParserTwoRequest
-from parsers.info.info import bybit as network_bybit
-from parsers.info.info import binance as network_binance
-from parsers.info.info import kucoin as network_kucoin
-from parsers.info.info import huobi as network_huobi
-from parsers.info.info import bitget as network_bitget
-from parsers.info.info import gateio as network_gateio
-from parsers.info.info import okx as network_okx
+from futures.services import RedisKyesFuturesSymbols
+
+from django.core.cache import cache
+
+from parsers.info.accepts.okx import accept as okx_accept
+from parsers.info.accepts.binance import accept as binance_accept
+from parsers.info.accepts.bybit import accept as bybit_accept
+from parsers.info.accepts.huobi import accept as huobi_accept
+from parsers.info.accepts.kucoin import accept as kucoin_accept
+from parsers.info.accepts.gateio import accept as gateio_accept
+from parsers.info.accepts.mexc import accept as mexc_accept
+from parsers.info.accepts.bitget import accept as bitget_accept
+
+from parsers.info.networks.info import bybit as network_bybit
+from parsers.info.networks.info import binance as network_binance
+from parsers.info.networks.info import kucoin as network_kucoin
+from parsers.info.networks.info import huobi as network_huobi
+from parsers.info.networks.info import bitget as network_bitget
+from parsers.info.networks.info import gateio as network_gateio
+from parsers.info.networks.info import okx as network_okx
 
 
 @app.task
@@ -23,6 +28,7 @@ def okx():
     Parser spot price of exchange Okx
     """
     key = 'okx'
+    futures_keys = RedisKyesFuturesSymbols()
     okx = {
         "url": "https://www.okx.com/api/v5/market/tickers?instType=SPOT",
         "path": ['data'],
@@ -31,6 +37,7 @@ def okx():
         "symbol": "instId", 
         "ex": key,
         "network": network_okx, 
+        "futures_set": cache.get(futures_keys.key_okx_futures), 
 
         "ask_qty": "askSz", 
         "bid_qty": "bidSz", 
@@ -54,13 +61,16 @@ def binance():
     Parser spot price of exchange Binance
     """
     key = 'binance'
+    futures_keys = RedisKyesFuturesSymbols()
     binance = {
         "url": "https://api.binance.com/api/v3/ticker/price",
         "accept": binance_accept,
+        "futures_symbols": set(),
         "price": "price",
         "symbol": "symbol", 
         "ex": key,
         "network": network_binance, 
+        "futures_set": cache.get(futures_keys.key_binance_futures), 
 
         "add_url": "https://api.binance.com/api/v3/ticker/bookTicker",
         "ask_qty": "askQty", 
@@ -78,14 +88,17 @@ def bybit():
     Parser spot price of exchange Bybit
     """
     key = 'bybit'
+    futures_keys = RedisKyesFuturesSymbols()
     bybit = {
         "url": "https://api.bybit.com/spot/v3/public/quote/ticker/price",
         "path": ['result', 'list'],
         "accept": bybit_accept,
+        "futures_symbols": set(),
         "price": "price",
         "symbol": "symbol", 
         "ex": key,
         "network": network_bybit, 
+        "futures_set": cache.get(futures_keys.key_bybit_futures), 
 
         "add_url": "https://api.bybit.com/spot/v3/public/quote/ticker/bookTicker",
         "ask_qty": "askQty", 
@@ -103,14 +116,17 @@ def huobi():
     Parser spot price of exchange Huobi
     """
     key = 'huobi'
+    futures_keys = RedisKyesFuturesSymbols()
     huobi = {
         "url": "https://api-aws.huobi.pro/market/tickers",
         "path": ['data'],
         "accept": huobi_accept,
+        "futures_symbols": set(),
         "price": "close",
         "symbol": "symbol", 
         "ex": key, 
         "network": network_huobi, 
+        "futures_set": cache.get(futures_keys.key_huobi_futures), 
 
         "ask_qty": "askSize", 
         "bid_qty": "bidSize", 
@@ -134,14 +150,17 @@ def kucoin():
     Parser spot price of exchange Kucoin
     """
     key = 'kucoin'
+    futures_keys = RedisKyesFuturesSymbols()
     kucoin = {
         "url": "https://api.kucoin.com/api/v1/market/allTickers",
         "path": ['data', 'ticker'],
         "accept": kucoin_accept,
+        "futures_symbols": set(),
         "price": "last",
         "symbol": "symbol", 
         "ex": key, 
         "network": network_kucoin, 
+        "futures_set": cache.get(futures_keys.key_kucoin_futures), 
 
         "ask_qty": "volValue", 
         "bid_qty": "volValue", 
@@ -171,13 +190,16 @@ def gateio():
     Parser spot price of exchange Gate.io
     """
     key = 'gateio'
+    futures_keys = RedisKyesFuturesSymbols()
     gateio = {
         "url": "https://api.gateio.ws/api/v4/spot/tickers",
         "accept": gateio_accept,
+        "futures_symbols": set(),
         "price": "last",
         "symbol": "currency_pair",
         "ex": key,
         "network": network_gateio, 
+        "futures_set": cache.get(futures_keys.key_gateio_futures), 
 
         "ask_qty": "quote_volume", 
         "bid_qty": "quote_volume", 
@@ -207,14 +229,17 @@ def bitget():
     Parser spot price of exchange BitGet
     """
     key = 'bitget'
+    futures_keys = RedisKyesFuturesSymbols()
     bitget = {
         "url": "https://api.bitget.com/api/spot/v1/market/tickers",
         "path": ['data'],
         "accept": bitget_accept,
+        "futures_symbols": set(),
         "price": "close",
         "symbol": "symbol", 
         "ex": key,
         "network": network_bitget, 
+        "futures_set": cache.get(futures_keys.key_bitget_futures), 
 
         "ask_qty": "askSz", 
         "bid_qty": "bidSz", 

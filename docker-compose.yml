@@ -47,14 +47,14 @@ services:
         depends_on:
             - celery
 
-    # flower:
-    #     build:
-    #         context: .
-    #     volumes:
-    #         - ./app:/app
-    #     ports:
-    #         - "5555:5555"
-    #     command: sh -c "sleep 2 && celery -A main flower"
-    #     depends_on:
-    #         - celery
-    #         - celery-beat
+    flower:
+        build:
+            context: .
+        volumes:
+            - ./app:/app
+        ports:
+            - "5555:5555"
+        command: sh -c "sleep 2 && celery -A main flower"
+        depends_on:
+            - celery
+            - celery-beat

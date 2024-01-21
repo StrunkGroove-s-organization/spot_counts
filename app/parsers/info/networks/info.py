@@ -667,7 +667,7 @@ gateio = {
     'TRACUSDT': {'Ordinals': 27},
     'RBNUSDT': {'ERC20': 26},
     'YGGUSDT': {'ERC20': 12},
-    'JOEUSDT': {'AVAXC': {'C-Chain': 0.34}},
+    'JOEUSDT': {'AVAXC (C-Chain)': 0.34},
     'CVCUSDT': {'ERC20': 41},
     'USTCUSDT': {'LUNC': 85},
     'DKAUSDT': {'ERC20': 210},

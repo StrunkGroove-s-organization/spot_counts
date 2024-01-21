@@ -22,6 +22,8 @@ EXTENSIONS_APP = [
     'best_change_parsing',
     'main',
     'api',
+    'time_life',
+    'futures',
     
     'rest_framework',
 ]

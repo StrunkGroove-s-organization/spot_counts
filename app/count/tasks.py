@@ -1,9 +1,9 @@
 from main.celery import app
-from .services import CountInTwo, CountInThree 
+from .services import CountInTwo, CountInThree
 
 
 @app.task
-def count_2():
+def count_in_two():
     return CountInTwo().main()
 
 @app.task

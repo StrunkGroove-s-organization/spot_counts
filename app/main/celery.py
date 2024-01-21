@@ -1,5 +1,6 @@
 import os
 from celery import Celery
+from celery.schedules import crontab
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main.settings')
 
@@ -8,10 +9,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 
-app.conf.beat_schedule = {
-
-    
-    ### Count in 3 actions
+count_in_three_actions_schedule = {
     'count-links-3-task-binance': {
         'task': 'count.tasks.binance',
         'schedule': 20.0,
@@ -32,16 +30,16 @@ app.conf.beat_schedule = {
         'task': 'count.tasks.okx',
         'schedule': 20.0,
     },
-    
+}
 
-    ### Count in 2 actions
+count_in_two_actions_schedule = {
     'count-task-2': {
-        'task': 'count.tasks.count_2',
+        'task': 'count.tasks.count_in_two',
         'schedule': 10.0,
     },
+}
 
-
-    ### Parsing best-change
+best_change_schedule = {
     'best-change-parsing-task': {
         'task': 'best_change_parsing.tasks.main',
         'schedule': 30.0,
@@ -50,39 +48,80 @@ app.conf.beat_schedule = {
         'task': 'best_change_zip.tasks.main',
         'schedule': 30.0,
     },
+}
 
+futures_schedule = {
+    'okx-futures-task': {
+        'task': 'futures.tasks.set_futures_okx',
+        # 'schedule': crontab(hour=0, minute=0),
+        'schedule': 30.0,
+    },
+    'binance-futures-task': {
+        'task': 'futures.tasks.set_futures_binance',
+        # 'schedule': crontab(hour=0, minute=0),
+        'schedule': 30.0,
+    },
+    'bybit-futures-task': {
+        'task': 'futures.tasks.set_futures_bybit',
+        # 'schedule': crontab(hour=0, minute=0),
+        'schedule': 30.0,
+    },
+    'gateio-futures-task': {
+        'task': 'futures.tasks.set_futures_gateio',
+        # 'schedule': crontab(hour=0, minute=0),
+        'schedule': 30.0,
+    },
+    'bitget-futures-task': {
+        'task': 'futures.tasks.set_futures_bitget',
+        # 'schedule': crontab(hour=0, minute=0),
+        'schedule': 30.0,
+    },
+    'kucoin-futures-task': {
+        'task': 'futures.tasks.set_futures_kucoin',
+        # 'schedule': crontab(hour=0, minute=0),
+        'schedule': 30.0,
+    },
+    'huobi-futures-task': {
+        'task': 'futures.tasks.set_futures_huobi',
+        # 'schedule': crontab(hour=0, minute=0),
+        'schedule': 30.0,
+    },
+}
 
-    ### Parsing spot 
-    'okx-task': {
+parsing_spot_schedule = {
+    'okx-parsing-spot-task': {
         'task': 'parsers.tasks.okx',
         'schedule': 10.0,
     },
-    'binance-task': {
+    'binance-parsing-spot-task': {
         'task': 'parsers.tasks.binance',
         'schedule': 10.0,
     },
-    'bybit-task': {
+    'bybit-parsing-spot-task': {
         'task': 'parsers.tasks.bybit',
         'schedule': 10.0,
     },
-    'okx-task': {
-        'task': 'parsers.tasks.okx',
-        'schedule': 10.0,
-    },
-    'gateio-task': {
+    'gateio-parsing-spot-task': {
         'task': 'parsers.tasks.gateio',
         'schedule': 10.0,
     },
-    'bitget-task': {
+    'bitget-parsing-spot-task': {
         'task': 'parsers.tasks.bitget',
         'schedule': 10.0,
     },
-    'kucoin-task': {
+    'kucoin-parsing-spot-task': {
         'task': 'parsers.tasks.kucoin',
         'schedule': 10.0,
     },
-    'huobi-task': {
+    'huobi-parsing-spot-task': {
         'task': 'parsers.tasks.huobi',
         'schedule': 10.0,
     },
 }
+
+app.conf.beat_schedule = {}
+app.conf.beat_schedule.update(futures_schedule)
+app.conf.beat_schedule.update(parsing_spot_schedule)
+app.conf.beat_schedule.update(best_change_schedule)
+app.conf.beat_schedule.update(count_in_two_actions_schedule)
+app.conf.beat_schedule.update(count_in_three_actions_schedule)

@@ -39,7 +39,7 @@ class Count:
         hash_object.update(key.encode())
         hashed = hash_object.hexdigest()
         return hashed
-    
+
 
 class CountInTwo(Count):
     def __init__(self):
@@ -47,10 +47,10 @@ class CountInTwo(Count):
 
         self._bid = 'bid_price'
         self._ask = 'ask_price'
-        self.first = {'type': 'SELL-BUY', 'buy': self._bid, 'sell': self._ask} # M-M -> SELL-BUY
+        self.first = {'type': 'SELL-BUY', 'buy': self._bid, 'sell': self._ask}   # M-M -> SELL-BUY
         self.second = {'type': 'SELL-SELL', 'buy': self._bid, 'sell': self._bid} # M-T -> SELL-SELL
-        self.third = {'type': 'BUY-BUY', 'buy': self._ask, 'sell': self._ask} # T-M -> BUY-BUY
-        self.four = {'type': 'BUY-SELL', 'buy': self._ask, 'sell': self._bid} # T-T -> BUY-SELL
+        self.third = {'type': 'BUY-BUY', 'buy': self._ask, 'sell': self._ask}    # T-M -> BUY-BUY
+        self.four = {'type': 'BUY-SELL', 'buy': self._ask, 'sell': self._bid}    # T-T -> BUY-SELL
 
     def get_data(self) -> dict:
         dict = {
@@ -69,34 +69,10 @@ class CountInTwo(Count):
         spread = spread - self.fee
         return round(spread, 2)
 
-    def create_hash(self, base_first, base_second, ex_first, ex_second) -> str:
-        key = f'{ex_first}--{ex_second}--{base_first}--{base_second}'
+    def create_hash(self, type_trade, trade_coin, ex_first, ex_second) -> str:
+        key = f'{type_trade}--{ex_first}--{ex_second}--{trade_coin}'
         return self.hashed(key)
 
-    def record(self) -> dict:
-        return {
-            "first": {
-                "exchange": str,
-                "price": float,
-                "full_price": float,
-                "bid_qty": float,
-                "ask_qty": float,
-                'base': str,
-                'quote': str,
-            },
-            "second": {
-                "exchange": str,
-                "price": float,
-                "full_price": float,
-                "bid_qty": float,
-                "ask_qty": float,
-                'base': str,
-                'quote': str,
-            },
-            'spread': float,
-            'hash': str,
-        }
-    
     def create_key(self, trade_type, ex_first, ex_second) -> str:
         return f'{trade_type}--{ex_first}--{ex_second}'
 
@@ -106,14 +82,12 @@ class CountInTwo(Count):
         new_networks = {}
 
         for network, fee in networks.items():
-            try:
-                fee = float(fee)
-            except TypeError as ve:
-                return networks
-            
-            new_networks[network] = fee * price
+            new_networks[network] = float(fee) * price
 
         return new_networks
+
+    def get_time_life(self):
+        return None
 
     def count(self, first_info, second_info, info) -> int:
         n = 0
@@ -161,11 +135,12 @@ class CountInTwo(Count):
                         "exchange": ex_first,
                         "price": self.custom_round(price_first),
                         "full_price": self.round_for_real(price_first),
-                        "bid_qty": ad_first['bid_qty'],
-                        "ask_qty": ad_first['ask_qty'],
-                        'base': base_first,
-                        'quote': quote_first,
-                        "networks": self.get_networks(ad_first['networks'], price_first),
+                        "bid_qty": ad_first["bid_qty"],
+                        "ask_qty": ad_first["ask_qty"],
+                        "base": base_first,
+                        "quote": quote_first,
+                        "futures": ad_first.get("futures"),
+                        "networks": self.get_networks(ad_first["networks"], price_first),
                     },
                     "second": {
                         "exchange": ex_second,
@@ -175,11 +150,13 @@ class CountInTwo(Count):
                         "ask_qty": ad_second['ask_qty'],
                         'base': base_second,
                         'quote': quote_second,
+                        'futures': ad_second.get('futures'),
                         "networks": self.get_networks(ad_second['networks'], price_second),
                     },
+                    'time_life': self.get_time_life(),
                     'spread': spread,
                     'hash': self.create_hash(
-                        base_first, base_second,ex_first, ex_second
+                        type_trade, base_second, ex_first, ex_second
                     ),
                 }
                 
@@ -195,8 +172,7 @@ class CountInTwo(Count):
 
         for ex_first, data_first in data.items():
             for ex_second, data_second in data.items():
-                if ex_first == ex_second:
-                    continue
+                if ex_first == ex_second: continue
 
                 first_info = {"ex": ex_first, "data": data_first}
                 second_info = {"ex": ex_second, "data": data_second}
